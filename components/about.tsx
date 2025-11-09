@@ -10,6 +10,7 @@ import { EditableBackground } from "@/components/editable/editable-background"
 import { useInlineEditor } from "@/contexts/inline-editor-context"
 import { COMMON_STYLES } from "@/lib/constants"
 
+
 // 사용 가능한 아이콘들 - 경험 카드용
 const AVAILABLE_ICONS = {
   briefcase: Briefcase,
@@ -94,24 +95,27 @@ const SKILL_ICONS = {
 
 export function About() {
   const { getData, saveData, isEditMode, saveToFile } = useInlineEditor()
+  const [openedStoryIndex, setOpenedStoryIndex] = useState<number | null>(null)
   // 기본 데이터
   const defaultInfo = {
     title: "Education",
     subtitle: "",
     background: {"image":"","video":"","color":"","opacity":0.1},
     experienceCards: [{"icon":"graduation","title":"용인 서원고등학교","period":"2020 졸업","description":""},{"icon":"graduation","title":"제주대학교 관광개발학과","period":"2020 - 2023","description":"GPA: 4.23/4.3"},{"icon":"graduation","title":"단국대학교 도시계획부동산학부","period":"2024 - 2026(졸업예정)","description":"GPA:  /4.5"}],
-    skills: [{"icon":"code","title":"프론트엔드 개발","description":"React, TypeScript, Next.js를 활용한 모던 웹 개발"},{"icon":"database","title":"백엔드 개발","description":"Node.js, Python, 데이터베이스 설계 및 구현"},{"icon":"palette","title":"UI/UX 디자인","description":"사용자 중심의 인터페이스 디자인"}],
-    storyTitle: "나의 이야기",
-    story: ["저는 기술을 통해 사람들의 삶을 더 편리하고 의미 있게 만드는 일에 열정을 가지고 있습니다.","다양한 프로젝트를 통해 문제 해결 능력과 창의적인 사고를 키워왔으며, 팀원들과의 협업을 통해 함께 성장하는 가치를 배웠습니다.","앞으로도 지속적인 학습과 도전을 통해 더 나은 개발자가 되기 위해 노력하겠습니다."],
+    skills: [{"icon":"barChart","title":"Excel","description":"데이터 분석 및 문서 관리 역량 / 컴퓨터활용능력 2급","barHeight":15,"barWidth":80,"barColor":"#11126A"},{"icon":"palette","title":"Adobe Illustrator","description":"시각 디자인 및 콘텐츠 제작 경험","barHeight":15,"barWidth":90,"barColor":"#11126A"},{"icon":"gitBranch","title":"Git / GitHub","description":"GitHub, Vercel을 활용한 포트폴리오 제작 · 배포 경험","barHeight":15,"barWidth":70,"barColor":"#11126A"}],
+    storyTitle: "Experience",
+    story: [{"text":"2025 단국대학교 사진동아리 DANSA 홍보부장\n","buttonColor":"#11126A"},{"text":"2024 단국대학교 사진동아리 DANSA 홍보부원","buttonColor":"#11126A"},{"text":"2022 KT&G 상상프렌즈 14기 B팀 팀장","buttonColor":"#11126A"},{"text":"2022 제주대학교 관광개발학과 기획부장","buttonColor":"#11126A"},{"text":"2021 제5회 대한민국 청년의 날 기획홍보단 이벤트기획팀 팀장","buttonColor":"#11126A"},{"text":"2021 제주대학교 35대 경상대학학생회 ‘시작’ 선거운동본부 홍보국장","buttonColor":"#11126A"},{"text":"2021 제주대학교 관광개발학과  2학년 과대표","buttonColor":"#11126A"},{"text":"2020 제주대학교 학습공동체 기획부장\n","buttonColor":"#11126A"}],
     storyImage: "",
-    hobbies: ["📚 독서","☕ 카페 투어","🎨 전시회 관람","✈️ 여행"],
-    awardTitle: "수상",
+    hobbies: ["✈️ 여행","🏕️ 캠핑","📸 사진","📚 독서"],
+    awardTitle: "Awards",
     careerTitle: "수상",
     honorTitle: "Honors",
     honorSubtitle: "장학·공로 내역을 입력하세요",
     honorCards: [{"title":"2020-1 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"}],
     awardSubtitle: "텍스트를 입력하세요",
-    awardCards: [{"title":"ㄹㅂㅈㄷㄴㅁ","period":"","description":"","icon":"trophy"},{"title":"새 수상 내역","period":"","description":"","icon":"trophy"}]
+    awardCards: [{"title":"ㄹㅂㅈㄷㄴㅁ","period":"","description":"","icon":"trophy"},{"title":"새 수상 내역","period":"","description":"","icon":"trophy"}],
+    coreTitle: "Skills",
+    educationCards: [{"school":"용인 서원고등학교","period":"2020 졸업","description":""},{"school":"제주대학교","period":"2020 - 2023","description":"관광개발학과"},{"school":"단국대학교","period":"2024 -2026(졸업예정)","description":"도시계획부동산학부\n"}]
   }
   
   const DEFAULT_ABOUT_INFO = {
@@ -227,7 +231,9 @@ useEffect(() => {
   const removeHobby = (index: number) => {
     updateAboutInfo('hobbies', aboutInfo.hobbies.filter((_, i) => i !== index))
   }
-  return (
+  
+return (
+  <>
     <EditableBackground
       image={backgroundData.image}
       video={backgroundData.video}
@@ -237,8 +243,7 @@ useEffect(() => {
         const newData = { ...backgroundData, ...data }
         setBackgroundData(newData)
         saveData('about-background', newData)
-        
-        // aboutInfo도 업데이트 (파일 저장을 위해)
+
         const updatedAboutInfo = { ...aboutInfo, background: newData }
         setAboutInfo(updatedAboutInfo)
         saveData('about-info', updatedAboutInfo)
@@ -247,90 +252,446 @@ useEffect(() => {
       className="py-20 bg-muted/30 relative"
     >
       <section id="about" className="w-full">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-{/* 학력 */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+        {/* ✅ 여기에 다 넣기 */}
+<div className="max-w-7xl mx-auto px-[14px] sm:px-[28px] lg:px-[36px] relative z-10">
+
+
+          {/* 구분선 */}
+          <div className="flex justify-center my-12">
+            <div className="w-1/2 border-t-2 border-gray-300"></div>
+          </div>
+
+
+          
+{/*  Education  */}
+<div className="text-center mb-10">
+  <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+    <EditableText
+      value={aboutInfo.educationTitle || "Education"}
+      onChange={(value) => updateAboutInfo("educationTitle", value)}
+      storageKey="about-education-title"
+    />
+  </h2>
+  <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+    <EditableText
+      value={aboutInfo.educationSubtitle || "학력 및 교육 이력을 입력하세요"}
+      onChange={(value) => updateAboutInfo("educationSubtitle", value)}
+      storageKey="about-education-subtitle"
+      multiline
+    />
+  </p>
+</div>
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+  {(aboutInfo.educationCards || []).map((edu, index) => (
+    <Card
+      key={index}
+      className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative"
+    >
+      <CardContent className="p-6">
+        {isEditMode && (
+          <button
+            onClick={() => {
+              const next = [...(aboutInfo.educationCards || [])]
+              next.splice(index, 1)
+              updateAboutInfo("educationCards", next)
+            }}
+            className={COMMON_STYLES.deleteButton}
+          >
+            <X className={COMMON_STYLES.deleteIcon} />
+          </button>
+        )}
+        <div className="flex items-start space-x-4">
+          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+            {/* 교육 아이콘 없으면 기본 Briefcase 쓰기 */}
+            <GraduationCap className="h-6 w-6 text-primary" />
+          </div>
+          <div className="flex-1">
+            {/* 학교/기관 이름 */}
+            <h3 className="font-semibold text-foreground mb-1">
               <EditableText
-                value={aboutInfo.title}
-                onChange={(value) => updateAboutInfo('title', value)}
-                storageKey="about-title"
+                value={edu.school || "학교 / 기관 이름"}
+                onChange={(value) => {
+                  const next = [...(aboutInfo.educationCards || [])]
+                  next[index] = { ...(next[index] || {}), school: value }
+                  updateAboutInfo("educationCards", next)
+                }}
+                storageKey={`about-education-${index}-school`}
               />
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            </h3>
+
+            {/* 기간 */}
+            <p className="text-sm text-primary mb-2">
               <EditableText
-                value={aboutInfo.subtitle}
-                onChange={(value) => updateAboutInfo('subtitle', value)}
-                storageKey="about-subtitle"
+                value={edu.period || "2021 - 2025"}
+                onChange={(value) => {
+                  const next = [...(aboutInfo.educationCards || [])]
+                  next[index] = { ...(next[index] || {}), period: value }
+                  updateAboutInfo("educationCards", next)
+                }}
+                storageKey={`about-education-${index}-period`}
+              />
+            </p>
+
+            {/* 전공 / 설명 */}
+            <p className="text-sm text-muted-foreground">
+              <EditableText
+                value={edu.description || "전공 / 수료 과정 / 주요 과목을 입력하세요"}
+                onChange={(value) => {
+                  const next = [...(aboutInfo.educationCards || [])]
+                  next[index] = { ...(next[index] || {}), description: value }
+                  updateAboutInfo("educationCards", next)
+                }}
+                storageKey={`about-education-${index}-description`}
                 multiline
               />
             </p>
           </div>
+        </div>
+      </CardContent>
+    </Card>
+  ))}
 
-{/* 경험 카드 (경력/학력/자격증 등) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {/* 경험 카드들 */}
-            {aboutInfo.experienceCards?.map((card, index) => {
-              const Icon = AVAILABLE_ICONS[card.icon as keyof typeof AVAILABLE_ICONS] || Briefcase
-              return (
-                <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative">
-                  <CardContent className="p-6">
-                    {isEditMode && (
-                      <button
-                        onClick={() => removeExperienceCard(index)}
-                        className={COMMON_STYLES.deleteButton}
-                      >
-                        <X className={COMMON_STYLES.deleteIcon} />
-                      </button>
-                    )}
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-foreground mb-1">
-                          <EditableText
-                            value={card.title}
-                            onChange={(value) => updateExperienceCard(index, 'title', value)}
-                            storageKey={`about-experience-${index}-title`}
-                          />
-                        </h3>
-                        <p className="text-sm text-primary mb-2">
-                          <EditableText
-                            value={card.period}
-                            onChange={(value) => updateExperienceCard(index, 'period', value)}
-                            storageKey={`about-experience-${index}-period`}
-                          />
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          <EditableText
-                            value={card.description}
-                            onChange={(value) => updateExperienceCard(index, 'description', value)}
-                            storageKey={`about-experience-${index}-description`}
-                          />
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              )
-            })}
-            
-            {/* 추가 버튼 */}
-            {isEditMode && (
-              <Card className="border-2 border-dashed border-muted-foreground/30 shadow-none hover:border-primary transition-all cursor-pointer"
-                    onClick={() => setShowCareerModal(true)}>
-                <CardContent className="p-6 flex items-center justify-center">
-                  <div className="text-center">
-                    <Settings className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-                    <p className="text-sm text-muted-foreground">경험 카드 편집</p>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
+  {/* 추가 버튼 (편집 모드에서만) */}
+  {isEditMode && (
+    <Card
+      className="border-2 border-dashed border-muted-foreground/30 shadow-none hover:border-primary transition-all cursor-pointer"
+      onClick={() => {
+        const next = [
+          ...(aboutInfo.educationCards || []),
+          {
+            school: "새 교육 이력",
+            period: "",
+            description: "",
+          },
+        ]
+        updateAboutInfo("educationCards", next)
+      }}
+    >
+      <CardContent className="p-6 flex items-center justify-center">
+        <div className="text-center">
+          <Settings className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+          <p className="text-sm text-muted-foreground">교육 이력 추가</p>
+        </div>
+      </CardContent>
+    </Card>
+  )}
+</div>
+
+{/* ✅ Experience (타임라인형으로 변경) */}
+{(aboutInfo.story.length > 0 || isEditMode) && (
+  <>
+    {/* 제목 */}
+    <div className="text-center mt-24 mb-20">
+      <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+        <EditableText
+          value={aboutInfo.storyTitle}
+          onChange={(value) => updateAboutInfo("storyTitle", value)}
+          storageKey="about-storyTitle"
+        />
+      </h2>
+      <p className="text-muted-foreground">
+        <EditableText
+          value={aboutInfo.storySubtitle || "텍스트를 입력하세요"}
+          onChange={(value) => updateAboutInfo("storySubtitle", value)}
+          storageKey="about-storySubtitle"
+        />
+      </p>
+    </div>
+
+    {/* 타임라인 카드 */}
+    <div className="bg-card rounded-2xl shadow-lg overflow-hidden p-8">
+      <div className="relative border-l-2 border-primary/30 pl-6 space-y-10">
+        {aboutInfo.story.map((item, index) => {
+          // 문자열일 경우 자동으로 객체 변환
+          const story = typeof item === "string" ? { text: item } : item
+
+          return (
+            <div key={index} className="relative">
+              {/* 왼쪽 동그라미 */}
+              <div className="absolute -left-[1.05rem] top-1.5 w-4 h-4 bg-primary rounded-full border-4 border-card"></div>
+
+              {/* 삭제 버튼 */}
+              {isEditMode && (
+                <button
+                  onClick={() => removeStory(index)}
+                  className={COMMON_STYLES.deleteButton + " top-0 right-0"}
+                >
+                  <X className={COMMON_STYLES.deleteIcon} />
+                </button>
+              )}
+
+              {/* 날짜 */}
+              <p className="text-sm text-muted-foreground mb-1">
+                <EditableText
+                  value={story.date || "01-Jan-2025 to 31-Dec-2025"}
+                  onChange={(value) => {
+                    const newStories = [...aboutInfo.story]
+                    newStories[index] = { ...story, date: value }
+                    updateAboutInfo("story", newStories)
+                  }}
+                  storageKey={`about-story-date-${index}`}
+                />
+              </p>
+
+              {/* 활동명 */}
+              <h3 className="text-xl font-bold mb-1">
+                <EditableText
+                  value={story.text}
+                  onChange={(value) => {
+                    const newStories = [...aboutInfo.story]
+                    newStories[index] = { ...story, text: value }
+                    updateAboutInfo("story", newStories)
+                  }}
+                  storageKey={`about-story-${index}`}
+                  multiline
+                />
+              </h3>
+
+              {/* 소속/역할 */}
+              <p className="text-muted-foreground mb-3">
+                <EditableText
+                  value={story.role || "소속 / 역할을 입력하세요"}
+                  onChange={(value) => {
+                    const newStories = [...aboutInfo.story]
+                    newStories[index] = { ...story, role: value }
+                    updateAboutInfo("story", newStories)
+                  }}
+                  storageKey={`about-story-role-${index}`}
+                />
+              </p>
+
+              {/* 설명 */}
+              <p className="text-foreground/80 leading-relaxed mb-3">
+                <EditableText
+                  value={story.desc || "이 활동에 대한 설명을 넣어주세요."}
+                  onChange={(value) => {
+                    const newStories = [...aboutInfo.story]
+                    newStories[index] = { ...story, desc: value }
+                    updateAboutInfo("story", newStories)
+                  }}
+                  storageKey={`about-story-desc-${index}`}
+                  multiline
+                />
+              </p>
+
+              {/* 활동 사진 보기 버튼 */}
+              <button
+                onClick={() => setOpenedStoryIndex(index)}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition"
+                style={{
+                  backgroundColor: story.buttonColor || "#11126A", 
+                  color: "#fff",
+                }}
+              >
+                활동 사진 보기 📷
+              </button>
+
+              {/* 색상 코드 입력 (편집 모드일 때만) */}
+              {isEditMode && (
+                <div className="mt-2 text-xs text-muted-foreground">
+                  <EditableText
+                    value={story.buttonColor || "#4F46E5"}
+                    onChange={(value) => {
+                      const newStories = [...aboutInfo.story]
+                      newStories[index] = { ...story, buttonColor: value }
+                      updateAboutInfo("story", newStories)
+                    }}
+                    storageKey={`about-story-buttonColor-${index}`}
+                  />
+                </div>
+              )}
+            </div>
+          )
+        })}
+
+        {/* 문단 추가 */}
+        {isEditMode && (
+          <button
+            onClick={() =>
+              updateAboutInfo("story", [
+                ...aboutInfo.story,
+                { text: "새 활동", buttonColor: "#4F46E5" },
+              ])
+            }
+            className="mt-2 px-4 py-2 border border-dashed border-muted-foreground/30 rounded-lg hover:border-primary transition-all"
+          >
+            <Plus className="h-4 w-4 inline mr-2" />
+            문단 추가
+          </button>
+        )}
+      </div>
+    </div>
+
+    {/* 모달 (활동 사진 보기) */}
+    {openedStoryIndex !== null && (
+      <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 space-y-4">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl font-bold">활동 사진</h3>
+            <button
+              onClick={() => setOpenedStoryIndex(null)}
+              className="w-8 h-8 rounded-full bg-muted flex items-center justify-center"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
-          
-{/* Honors */}
+
+          <p className="text-sm text-muted-foreground mb-4">
+            이 활동과 관련된 사진을 업로드하세요.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <EditableMedia
+              src=""
+              onChange={() => {}}
+              type="image"
+              storageKey={`about-story-photo-${openedStoryIndex}-1`}
+              className="w-full aspect-[4/3] object-cover rounded-lg"
+              alt="활동 사진 1"
+              purpose="about-image"
+            />
+            <EditableMedia
+              src=""
+              onChange={() => {}}
+              type="image"
+              storageKey={`about-story-photo-${openedStoryIndex}-2`}
+              className="w-full aspect-[4/3] object-cover rounded-lg"
+              alt="활동 사진 2"
+              purpose="about-image"
+            />
+            <EditableMedia
+              src=""
+              onChange={() => {}}
+              type="image"
+              storageKey={`about-story-photo-${openedStoryIndex}-3`}
+              className="w-full aspect-[4/3] object-cover rounded-lg"
+              alt="활동 사진 3"
+              purpose="about-image"
+            />
+          </div>
+        </div>
+      </div>
+    )}
+  </>
+)}
+
+<div className="my-20"></div>
+
+
+{/* ===== Awards ===== */}
+<div className="text-center mb-10">
+  <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+    <EditableText
+      value={aboutInfo.awardTitle || "수상"}
+      onChange={(value) => updateAboutInfo("awardTitle", value)}
+      storageKey="about-award-title"
+    />
+  </h2>
+  <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+    <EditableText
+      value={aboutInfo.awardSubtitle || "텍스트를 입력하세요"}
+      onChange={(value) => updateAboutInfo("awardSubtitle", value)}
+      storageKey="about-award-subtitle"
+      multiline
+    />
+  </p>
+</div>
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+  {(aboutInfo.awardCards || []).map((card, index) => {
+    const Icon =
+      AVAILABLE_ICONS[card.icon as keyof typeof AVAILABLE_ICONS] || Briefcase
+    return (
+      <Card
+        key={index}
+        className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative"
+      >
+        <CardContent className="p-6">
+          {isEditMode && (
+            <button
+              onClick={() => {
+                const next = [...(aboutInfo.awardCards || [])]
+                next.splice(index, 1)
+                updateAboutInfo("awardCards", next)
+              }}
+              className={COMMON_STYLES.deleteButton}
+            >
+              <X className={COMMON_STYLES.deleteIcon} />
+            </button>
+          )}
+          <div className="flex items-start space-x-4">
+            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Icon className="h-6 w-6 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-foreground mb-1">
+                <EditableText
+                  value={card.title}
+                  onChange={(value) => {
+                    const next = [...(aboutInfo.awardCards || [])]
+                    next[index] = { ...(next[index] || {}), title: value }
+                    updateAboutInfo("awardCards", next)
+                  }}
+                  storageKey={`about-award-${index}-title`}
+                />
+              </h3>
+              <p className="text-sm text-primary mb-2">
+                <EditableText
+                  value={card.period}
+                  onChange={(value) => {
+                    const next = [...(aboutInfo.awardCards || [])]
+                    next[index] = { ...(next[index] || {}), period: value }
+                    updateAboutInfo("awardCards", next)
+                  }}
+                  storageKey={`about-award-${index}-period`}
+                />
+              </p>
+              <p className="text-sm text-muted-foreground">
+                <EditableText
+                  value={card.description}
+                  onChange={(value) => {
+                    const next = [...(aboutInfo.awardCards || [])]
+                    next[index] = { ...(next[index] || {}), description: value }
+                    updateAboutInfo("awardCards", next)
+                  }}
+                  storageKey={`about-award-${index}-description`}
+                />
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  })}
+
+  {isEditMode && (
+    <Card
+      className="border-2 border-dashed border-muted-foreground/30 shadow-none hover:border-primary transition-all cursor-pointer"
+      onClick={() => {
+        const next = [
+          ...(aboutInfo.awardCards || []),
+          {
+            title: "새 수상 내역",
+            period: "",
+            description: "",
+            icon: "trophy",
+          },
+        ]
+        updateAboutInfo("awardCards", next)
+      }}
+    >
+      <CardContent className="p-6 flex items-center justify-center">
+        <div className="text-center">
+          <Settings className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+          <p className="text-sm text-muted-foreground">수상 카드 추가</p>
+        </div>
+      </CardContent>
+    </Card>
+  )}
+</div>
+
+{/* ===== Honors ===== */}
 <div className="text-center mb-10">
   <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
     <EditableText
@@ -381,10 +742,7 @@ useEffect(() => {
                   value={card.title}
                   onChange={(value) => {
                     const next = [...(aboutInfo.honorCards || [])]
-                    next[index] = {
-                      ...(next[index] || {}),
-                      title: value,
-                    }
+                    next[index] = { ...(next[index] || {}), title: value }
                     updateAboutInfo("honorCards", next)
                   }}
                   storageKey={`about-honor-${index}-title`}
@@ -395,10 +753,7 @@ useEffect(() => {
                   value={card.period}
                   onChange={(value) => {
                     const next = [...(aboutInfo.honorCards || [])]
-                    next[index] = {
-                      ...(next[index] || {}),
-                      period: value,
-                    }
+                    next[index] = { ...(next[index] || {}), period: value }
                     updateAboutInfo("honorCards", next)
                   }}
                   storageKey={`about-honor-${index}-period`}
@@ -409,10 +764,7 @@ useEffect(() => {
                   value={card.description}
                   onChange={(value) => {
                     const next = [...(aboutInfo.honorCards || [])]
-                    next[index] = {
-                      ...(next[index] || {}),
-                      description: value,
-                    }
+                    next[index] = { ...(next[index] || {}), description: value }
                     updateAboutInfo("honorCards", next)
                   }}
                   storageKey={`about-honor-${index}-description`}
@@ -451,286 +803,172 @@ useEffect(() => {
   )}
 </div>
 
-  
-{/* 수상 */}
-<div className="text-center mb-10">
-  <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-    <EditableText
-      value={aboutInfo.awardTitle || "수상"}
-      onChange={(value) => updateAboutInfo("awardTitle", value)}
-      storageKey="about-award-title"
-    />
-  </h2>
-  <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-    <EditableText
-      value={aboutInfo.awardSubtitle || "텍스트를 입력하세요"}
-      onChange={(value) => updateAboutInfo("awardSubtitle", value)}
-      storageKey="about-award-subtitle"
-      multiline
-    />
-  </p>
-</div>
+{/* ===== Skills ===== */}
+{(aboutInfo.skills.length > 0 || isEditMode) && (
+  <div className="mb-16">
+    <div className="text-center mb-10">
+      <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+        <EditableText
+          value={aboutInfo.coreTitle || "핵심 역량"}
+          onChange={(value) => updateAboutInfo("coreTitle", value)}
+          storageKey="about-core-title"
+        />
+      </h2>
+      <p className="text-muted-foreground">
+        <EditableText
+          value={aboutInfo.coreSubtitle || "주요 기술과 역량을 입력하세요"}
+          onChange={(value) => updateAboutInfo("coreSubtitle", value)}
+          storageKey="about-core-subtitle"
+          multiline
+        />
+      </p>
+    </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-  {(aboutInfo.awardCards || []).map((card, index) => {
-    const Icon =
-      AVAILABLE_ICONS[card.icon as keyof typeof AVAILABLE_ICONS] || Briefcase
-    return (
-      <Card
-        key={index}
-        className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative"
-      >
-        <CardContent className="p-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {aboutInfo.skills.map((skill, index) => {
+        const Icon =
+          SKILL_ICONS[skill.icon as keyof typeof SKILL_ICONS] || Trophy
+
+        const barWidth = skill.barWidth || 75
+        const barColor = skill.barColor || "#4F46E5"
+        const barHeight = skill.barHeight || 8
+
+        return (
+          <div key={index} className="text-center relative">
+            {isEditMode && (
+              <button
+                onClick={() => removeSkill(index)}
+                className={COMMON_STYLES.deleteButton}
+              >
+                <X className={COMMON_STYLES.deleteIcon} />
+              </button>
+            )}
+
+            <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+              <Icon className="h-8 w-8 text-primary" />
+            </div>
+
+            <h4 className="font-semibold text-foreground mb-2">
+              <EditableText
+                value={skill.title}
+                onChange={(value) => updateSkill(index, "title", value)}
+                storageKey={`about-skill-${index}-title`}
+              />
+            </h4>
+
+            <p className="text-sm text-muted-foreground mb-4">
+              <EditableText
+                value={skill.description}
+                onChange={(value) => updateSkill(index, "description", value)}
+                storageKey={`about-skill-${index}-description`}
+                multiline
+              />
+            </p>
+
+            <div className="w-[65%] mx-auto">
+              <div
+                className="rounded-full overflow-hidden transition-all"
+                style={{
+                  height: `${barHeight}px`,
+                  backgroundColor: "hsl(240, 5%, 82%)",
+                }}
+              >
+                <div
+                  className="rounded-full transition-all"
+                  style={{
+                    width: `${barWidth}%`,
+                    height: `${barHeight}px`,
+                    backgroundColor: barColor,
+                  }}
+                />
+              </div>
+
+              {isEditMode && (
+                <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+                  <EditableText
+                    value={String(barWidth)}
+                    onChange={(value) =>
+                      updateSkill(index, "barWidth", Number(value) || 0)
+                    }
+                    storageKey={`about-skill-${index}-barWidth`}
+                  />
+                  <EditableText
+                    value={barColor}
+                    onChange={(value) =>
+                      updateSkill(index, "barColor", value)
+                    }
+                    storageKey={`about-skill-${index}-barColor`}
+                  />
+                  <EditableText
+                    value={String(barHeight)}
+                    onChange={(value) =>
+                      updateSkill(index, "barHeight", Number(value) || 8)
+                    }
+                    storageKey={`about-skill-${index}-barHeight`}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        )
+      })}
+
+      {isEditMode && (
+        <div
+          className="text-center border-2 border-dashed border-muted-foreground/30 rounded-lg p-6 flex items-center justify-center cursor-pointer hover:border-primary transition-all"
+          onClick={() => setShowSkillModal(true)}
+        >
+          <div>
+            <Settings className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+            <p className="text-sm text-muted-foreground">스킬 편집</p>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
+{/* ===== 취미 & 관심사 ===== */}
+{(aboutInfo.hobbies.length > 0 || isEditMode) && (
+  <div className="mt-16 text-center">
+    <h3 className="text-2xl font-bold text-foreground mb-8">취미 & 관심사</h3>
+    <div className="flex flex-wrap justify-center gap-3">
+      {aboutInfo.hobbies.map((hobby, index) => (
+        <span
+          key={index}
+          className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm relative group flex items-center justify-center"
+        >
           {isEditMode && (
             <button
-              onClick={() => {
-                const next = [...(aboutInfo.awardCards || [])]
-                next.splice(index, 1)
-                // 저장까지
-                updateAboutInfo("awardCards", next)
-              }}
-              className={COMMON_STYLES.deleteButton}
+              onClick={() => removeHobby(index)}
+              className={`${COMMON_STYLES.deleteButton} opacity-0 group-hover:opacity-100 transition-opacity`}
             >
               <X className={COMMON_STYLES.deleteIcon} />
             </button>
           )}
-          <div className="flex items-start space-x-4">
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-              <Icon className="h-6 w-6 text-primary" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-semibold text-foreground mb-1">
-                <EditableText
-                  value={card.title}
-                  onChange={(value) => {
-                    const next = [...(aboutInfo.awardCards || [])]
-                    next[index] = {
-                      ...(next[index] || {}),
-                      title: value,
-                    }
-                    updateAboutInfo("awardCards", next)
-                  }}
-                  storageKey={`about-award-${index}-title`}
-                />
-              </h3>
-              <p className="text-sm text-primary mb-2">
-                <EditableText
-                  value={card.period}
-                  onChange={(value) => {
-                    const next = [...(aboutInfo.awardCards || [])]
-                    next[index] = {
-                      ...(next[index] || {}),
-                      period: value,
-                    }
-                    updateAboutInfo("awardCards", next)
-                  }}
-                  storageKey={`about-award-${index}-period`}
-                />
-              </p>
-              <p className="text-sm text-muted-foreground">
-                <EditableText
-                  value={card.description}
-                  onChange={(value) => {
-                    const next = [...(aboutInfo.awardCards || [])]
-                    next[index] = {
-                      ...(next[index] || {}),
-                      description: value,
-                    }
-                    updateAboutInfo("awardCards", next)
-                  }}
-                  storageKey={`about-award-${index}-description`}
-                />
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    )
-  })}
+          <EditableText
+            value={hobby}
+            onChange={(value) => updateHobby(index, value)}
+            storageKey={`about-hobby-${index}`}
+          />
+        </span>
+      ))}
 
-  {isEditMode && (
-    <Card
-      className="border-2 border-dashed border-muted-foreground/30 shadow-none hover:border-primary transition-all cursor-pointer"
-      onClick={() => {
-        const next = [
-          ...(aboutInfo.awardCards || []),
-          {
-            title: "새 수상 내역",
-            period: "",
-            description: "",
-            icon: "trophy",
-          },
-        ]
-        // 저장까지
-        updateAboutInfo("awardCards", next)
-      }}
-    >
-      <CardContent className="p-6 flex items-center justify-center">
-        <div className="text-center">
-          <Settings className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-          <p className="text-sm text-muted-foreground">수상 카드 추가</p>
-        </div>
-      </CardContent>
-    </Card>
-  )}
-</div>
+      {isEditMode && (
+        <button
+          onClick={() => setShowHobbyModal(true)}
+          className="px-4 py-2 border border-dashed border-muted-foreground/30 rounded-full text-sm hover:border-primary transition-all"
+        >
+          <Settings className="h-4 w-4 inline mr-1" />
+          편집
+        </button>
+      )}
+    </div>
+  </div>
+)}
 
 
-
-          {/* 핵심 역량 */}
-          {(aboutInfo.skills.length > 0 || isEditMode) && (
-            <div className="mb-16">
-              <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
-                핵심 역량
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {aboutInfo.skills.map((skill, index) => {
-                  const Icon = SKILL_ICONS[skill.icon as keyof typeof SKILL_ICONS] || Trophy
-                  return (
-                    <div key={index} className="text-center relative">
-                      {isEditMode && (
-                        <button
-                          onClick={() => removeSkill(index)}
-                          className={COMMON_STYLES.deleteButton}
-                        >
-                          <X className={COMMON_STYLES.deleteIcon} />
-                        </button>
-                      )}
-                      <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Icon className="h-8 w-8 text-primary" />
-                      </div>
-                      <h4 className="font-semibold text-foreground mb-2">
-                        <EditableText
-                          value={skill.title}
-                          onChange={(value) => updateSkill(index, 'title', value)}
-                          storageKey={`about-skill-${index}-title`}
-                        />
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        <EditableText
-                          value={skill.description}
-                          onChange={(value) => updateSkill(index, 'description', value)}
-                          storageKey={`about-skill-${index}-description`}
-                          multiline
-                        />
-                      </p>
-                    </div>
-                  )
-                })}
-                {isEditMode && (
-                  <div 
-                    className="text-center border-2 border-dashed border-muted-foreground/30 rounded-lg p-6 flex items-center justify-center cursor-pointer hover:border-primary transition-all"
-                    onClick={() => setShowSkillModal(true)}
-                  >
-                    <div>
-                      <Settings className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-                      <p className="text-sm text-muted-foreground">스킬 편집</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* 자기소개 상세 */}
-          {(aboutInfo.story.length > 0 || isEditMode) && (
-            <div className="bg-card rounded-2xl shadow-lg overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-foreground mb-4">
-                    <EditableText
-                      value={aboutInfo.storyTitle}
-                      onChange={(value) => updateAboutInfo('storyTitle', value)}
-                      storageKey="about-storyTitle"
-                    />
-                  </h3>
-                  {aboutInfo.story.map((paragraph, index) => (
-                    <div key={index} className="relative mb-4">
-                      {isEditMode && (
-                        <button
-                          onClick={() => removeStory(index)}
-                          className={COMMON_STYLES.deleteButton}
-                        >
-                          <X className={COMMON_STYLES.deleteIcon} />
-                        </button>
-                      )}
-                      <p className="text-muted-foreground leading-relaxed">
-                        <EditableText
-                          value={paragraph}
-                          onChange={(value) => updateStory(index, value)}
-                          storageKey={`about-story-${index}`}
-                          multiline
-                        />
-                      </p>
-                    </div>
-                  ))}
-                  {isEditMode && (
-                    <button
-                      onClick={addStory}
-                      className="mt-2 px-4 py-2 border border-dashed border-muted-foreground/30 rounded-lg hover:border-primary transition-all"
-                    >
-                      <Plus className="h-4 w-4 inline mr-2" />
-                      문단 추가
-                    </button>
-                  )}
-                </div>
-                
-                {/* 이미지 영역 */}
-                <div className="relative w-full h-full min-h-[500px] lg:min-h-full">
-                  <EditableMedia
-                    src={aboutInfo.storyImage}
-                    onChange={(src) => updateAboutInfo('storyImage', src)}
-                    type="image"
-                    storageKey="about-storyImage"
-                    className="w-full h-full object-cover"
-                    alt="소개 이미지"
-                    purpose="about-image"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* 취미 & 관심사 */}
-          {(aboutInfo.hobbies.length > 0 || isEditMode) && (
-            <div className="mt-16 text-center">
-              <h3 className="text-2xl font-bold text-foreground mb-8">
-                취미 & 관심사
-              </h3>
-              <div className="flex flex-wrap justify-center gap-3">
-                {aboutInfo.hobbies.map((hobby, index) => (
-                  <span key={index} className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm relative group flex items-center justify-center">
-                    {isEditMode && (
-                      <button
-                        onClick={() => removeHobby(index)}
-                        className={`${COMMON_STYLES.deleteButton} opacity-0 group-hover:opacity-100 transition-opacity`}
-                      >
-                        <X className={COMMON_STYLES.deleteIcon} />
-                      </button>
-                    )}
-                    <EditableText
-                      value={hobby}
-                      onChange={(value) => updateHobby(index, value)}
-                      storageKey={`about-hobby-${index}`}
-                    />
-                  </span>
-                ))}
-                {isEditMode && (
-                  <button
-                    onClick={() => setShowHobbyModal(true)}
-                    className="px-4 py-2 border border-dashed border-muted-foreground/30 rounded-full text-sm hover:border-primary transition-all"
-                  >
-                    <Settings className="h-4 w-4 inline mr-1" />
-                    편집
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-      
-      {/* 경험 카드 편집 모달 */}
+{/* 경험 카드 편집 모달 */}
       {showCareerModal && isEditMode && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999]">
           <div className="bg-background border rounded-lg p-6 max-w-3xl w-full mx-4 max-h-[80vh] overflow-y-auto">
@@ -848,7 +1086,7 @@ useEffect(() => {
         </div>
       )}
       
-      {/* 스킬 편집 모달 */}
+ {/* 스킬 편집 모달 */}
       {showSkillModal && isEditMode && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[2147483647]">
           <div className="bg-background border rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
@@ -916,6 +1154,7 @@ useEffect(() => {
                         </optgroup>
                       </select>
                     </div>
+                    
                     
                     <div className="flex-1 space-y-2">
                       <input
@@ -1032,7 +1271,28 @@ useEffect(() => {
               <div className="mb-4">
                 <p className="text-sm font-medium mb-2">🎯 취미 예시:</p>
                 <div className="flex flex-wrap gap-2">
-                  {['📚 독서', '☕ 카페 투어', '🎨 전시회 관람', '✈️ 여행', '🏃 러닝', '📸 사진', '🎮 게임', '🎬 영화 감상', '🎵 음악 감상', '🍳 요리', '🌱 가드닝', '🏊 수영', '🧘 요가', '🎸 기타 연주', '✍️ 글쓰기', '🏕️ 캠핑', '🎭 연극 관람', '🎪 공연 관람', '🚴 자전거', '⛷️ 스키'].map((example) => (
+                  {[
+                    '📚 독서',
+                    '☕ 카페 투어',
+                    '🎨 전시회 관람',
+                    '✈️ 여행',
+                    '🏃 러닝',
+                    '📸 사진',
+                    '🎮 게임',
+                    '🎬 영화 감상',
+                    '🎵 음악 감상',
+                    '🍳 요리',
+                    '🌱 가드닝',
+                    '🏊 수영',
+                    '🧘 요가',
+                    '🎸 기타 연주',
+                    '✍️ 글쓰기',
+                    '🏕️ 캠핑',
+                    '🎭 연극 관람',
+                    '🎪 공연 관람',
+                    '🚴 자전거',
+                    '⛷️ 스키',
+                  ].map((example) => (
                     <button
                       key={example}
                       className="px-3 py-1 text-sm bg-muted hover:bg-primary/10 rounded-full transition-all"
@@ -1075,7 +1335,11 @@ useEffect(() => {
             </div>
           </div>
         </div>
-      )}
-    </EditableBackground>
-  )
+            )}
+
+    </div> 
+  </section> 
+</EditableBackground> 
+</> 
+)
 }

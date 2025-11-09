@@ -17,13 +17,8 @@ export function Projects() {
     subtitle: "프로젝트",
     initialDisplay: 6,
     loadMoreCount: 3,
-    background: {
-      image: "",
-      video: "",
-      color: "",
-      opacity: 0.1
-    },
-    projects: [] as Array<{ image: string; video?: string; title: string; description: string }>
+    background: {"image":"","video":"","color":"","opacity":0.1},
+    projects: [{"image":"/uploads/project-0-1762618669355.jpeg","video":"","title":"-","description":"--ㅇ맒\n"},{"image":"","video":"","title":"-","description":"--ㅇ맒\n"}] as Array<{ image: string; video?: string; title: string; description: string }>
   }
 
   const [projectsInfo, setProjectsInfo] = useState(defaultInfo)
@@ -206,8 +201,15 @@ export function Projects() {
         storageKey="projects-background"
         className="relative"
       >
-        <section id="projects" className="py-20">
+<section id="projects" className="pt-4 pb-20">
+
+
+          
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+
+  <section id="projects" className="py-20"></section>
+  
           {/* 섹션 제목 */}
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -750,3 +752,4 @@ export function Projects() {
     </>
   )
 }
+

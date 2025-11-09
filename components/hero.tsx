@@ -36,7 +36,7 @@ export function Hero() {
   const defaultSocialLinks = [{"name":"Mail","icon":"mail","url":"yvulw@naver.com"},{"name":"Instagram","icon":"instagram","url":"https://instagram.com/iyvulw"},{"name":"YouTube","icon":"youtube","url":"https://youtube.com/@yvulw"},{"name":"Blog","icon":"discord","url":"https://blog.naver.com/yvulw"}]
   
   const defaultInfo = {
-    greeting: ":0",
+    greeting: "32227118",
     name: "김민아",
     title: "----",
     description: "-",
