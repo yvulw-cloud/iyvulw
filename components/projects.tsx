@@ -18,7 +18,7 @@ export function Projects() {
     initialDisplay: 6,
     loadMoreCount: 3,
     background: {"image":"","video":"","color":"","opacity":0.1},
-    projects: [{"image":"/uploads/project-0-1762618669355.jpeg","video":"","title":"-","description":"--ㅇ맒\n"},{"image":"","video":"","title":"-","description":"--ㅇ맒\n"}] as Array<{ image: string; video?: string; title: string; description: string }>
+    projects: [{"image":"","video":"","title":"","description":""}] as Array<{ image: string; video?: string; title: string; description: string }>
   }
 
   const [projectsInfo, setProjectsInfo] = useState(defaultInfo)
