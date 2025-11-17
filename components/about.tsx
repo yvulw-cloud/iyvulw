@@ -96,6 +96,25 @@ const SKILL_ICONS = {
 export function About() {
   const { getData, saveData, isEditMode, saveToFile } = useInlineEditor()
   const [openedStoryIndex, setOpenedStoryIndex] = useState<number | null>(null)
+  const [hobbyImages, setHobbyImages] = useState<Record<number, string>>({})
+  const [openHobbyIndex, setOpenHobbyIndex] = useState<number | null>(null)
+  const [travelImages, setTravelImages] = useState<string[]>(Array(9).fill(""))
+  const [readingQuotes, setReadingQuotes] = useState<string[]>([""])
+  const [volunteerImage, setVolunteerImage] = useState<string>("")
+  const [volunteerTexts, setVolunteerTexts] = useState<string[]>([""])
+
+  useEffect(() => {
+    if (openHobbyIndex !== null) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [openHobbyIndex])
+
+
   // 기본 데이터
   const defaultInfo = {
     title: "Education",
@@ -104,9 +123,9 @@ export function About() {
     experienceCards: [{"icon":"graduation","title":"용인 서원고등학교","period":"2020 졸업","description":""},{"icon":"graduation","title":"제주대학교 관광개발학과","period":"2020 - 2023","description":"GPA: 4.23/4.3"},{"icon":"graduation","title":"단국대학교 도시계획부동산학부","period":"2024 - 2026(졸업예정)","description":"GPA:  /4.5"}],
     skills: [{"icon":"barChart","title":"Excel","description":"데이터 분석 및 문서 관리 역량 / 컴퓨터활용능력 2급","barHeight":15,"barWidth":80,"barColor":"#11126A"},{"icon":"palette","title":"Adobe Illustrator","description":"시각 디자인 및 콘텐츠 제작 경험","barHeight":15,"barWidth":90,"barColor":"#11126A"},{"icon":"gitBranch","title":"Git / GitHub","description":"GitHub, Vercel을 활용한 포트폴리오 제작 · 배포 경험","barHeight":15,"barWidth":70,"barColor":"#11126A"}],
     storyTitle: "Experience",
-    story: [{"text":"\n","buttonColor":"#11126A","desc":"이 활동에 대한 설명을 넣어주세요."},{"text":"새 활동","buttonColor":"#11126A"},{"text":"새 활동","buttonColor":"#11126A"}],
+    story: [{"text":"2025 단국대학교 사진동아리 DANSA 홍보부장","buttonColor":"#11126A","desc":"","role":"","date":"2025.01. -"},{"text":"2024 단국대학교 사진동아리 DANSA 홍보부원","buttonColor":"#11126A","date":"2024.01. - 2024.12."},{"text":"2022 KT&G 상상프렌즈 14기 B팀 팀장","buttonColor":"#11126A","date":"2022.03. - 2022.6."},{"text":"2022 제주대학교 관광개발학과 기획부장","buttonColor":"#11126A","date":"2022.01. - 2022.12."},{"text":"2021 제5회 대한민국 청년의 날 기획홍보단 이벤트기획팀 팀장","buttonColor":"#11126A","date":"2021.03 - 2021.11."},{"text":"제주대학교 35대 경상대학학생회 ‘시작’ 선거운동본부 홍보국장","buttonColor":"#11126A","date":"2021.10. - 2021.11."},{"text":"제주대학교 관광개발학과  2학년 과대표","buttonColor":"#11126A","date":"2021.01. - 2021.12."},{"text":"2020 제주대학교 학습공동체 기획부장","buttonColor":"#11126A","date":"2020.03. - 2020.08."}],
     storyImage: "",
-    hobbies: ["✈️ 여행","🏕️ 캠핑","📸 사진","📚 독서"],
+    hobbies: ["✈️ 여행","📚 독서","🌱 봉사"],
     awardTitle: "Awards",
     careerTitle: "수상",
     honorTitle: "Honors",
@@ -115,7 +134,8 @@ export function About() {
     awardSubtitle: "텍스트를 입력하세요",
     awardCards: [{"title":"","period":"","description":"","icon":"trophy"},{"title":"새 수상 내역","period":"","description":"","icon":"trophy"}],
     coreTitle: "Skills",
-    educationCards: [{"school":"","period":"","description":""},{"school":"","period":"","description":"GPA: 4.23/4.3"},{"school":"","period":"","description":"GPA: /4.5"}]
+    educationCards: [{"school":"용인 서원고등학교","period":"2020 졸업","description":""},{"school":"제주대학교 관광개발학과","period":"2020 - 2023","description":"GPA: 4.23/4.3"},{"school":"단국대학교 도시계획부동산학부","period":"2024 - 2026(졸업예정)","description":"GPA: /4.5"}],
+    hobbyTitle: "Interests"
   }
   
   const DEFAULT_ABOUT_INFO = {
@@ -233,8 +253,7 @@ useEffect(() => {
   }
   
 return (
-  <>
-    <EditableBackground
+      <EditableBackground
       image={backgroundData.image}
       video={backgroundData.video}
       color={backgroundData.color}
@@ -242,26 +261,13 @@ return (
       onChange={(data) => {
         const newData = { ...backgroundData, ...data }
         setBackgroundData(newData)
-        saveData('about-background', newData)
-
-        const updatedAboutInfo = { ...aboutInfo, background: newData }
-        setAboutInfo(updatedAboutInfo)
-        saveData('about-info', updatedAboutInfo)
+        saveData("about-background", newData)
       }}
       storageKey="about-background"
       className="py-20 bg-muted/30 relative"
     >
       <section id="about" className="w-full">
-        {/* ✅ 여기에 다 넣기 */}
-<div className="max-w-7xl mx-auto px-[14px] sm:px-[28px] lg:px-[36px] relative z-10">
-
-
-          {/* 구분선 */}
-          <div className="flex justify-center my-12">
-            <div className="w-1/2 border-t-2 border-gray-300"></div>
-          </div>
-
-
+        <div className="max-w-7xl mx-auto px-[14px] sm:px-[28px] lg:px-[36px]">
           
 {/*  Education  */}
 <div className="text-center mb-10">
@@ -272,14 +278,6 @@ return (
       storageKey="about-education-title"
     />
   </h2>
-  <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-    <EditableText
-      value={aboutInfo.educationSubtitle || "학력 및 교육 이력을 입력하세요"}
-      onChange={(value) => updateAboutInfo("educationSubtitle", value)}
-      storageKey="about-education-subtitle"
-      multiline
-    />
-  </p>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -352,7 +350,7 @@ return (
     </Card>
   ))}
 
-  {/* 추가 버튼 (편집 모드에서만) */}
+  {/* 추가 버튼 */}
   {isEditMode && (
     <Card
       className="border-2 border-dashed border-muted-foreground/30 shadow-none hover:border-primary transition-all cursor-pointer"
@@ -378,205 +376,176 @@ return (
   )}
 </div>
 
-{/* ✅ Experience (타임라인형으로 변경) */}
-{(aboutInfo.story.length > 0 || isEditMode) && (
-  <>
-    {/* 제목 */}
-    <div className="text-center mt-24 mb-20">
-      <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-        <EditableText
-          value={aboutInfo.storyTitle}
-          onChange={(value) => updateAboutInfo("storyTitle", value)}
-          storageKey="about-storyTitle"
-        />
-      </h2>
-      <p className="text-muted-foreground">
-        <EditableText
-          value={aboutInfo.storySubtitle || "텍스트를 입력하세요"}
-          onChange={(value) => updateAboutInfo("storySubtitle", value)}
-          storageKey="about-storySubtitle"
-        />
-      </p>
-    </div>
+{/* ✅ Experience (타임라인 + 뱃지 조합) */}
+<section className="mt-24">
+  {/* 섹션 제목 */}
+  <div className="text-center mb-10">
+    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
+      <EditableText
+        value="Experience"
+        storageKey="experience-title"
+      />
+    </h2>
+    <p className="text-muted-foreground text-sm sm:text-base">
+      <EditableText
+        value="동아리, 대외활동, 인턴 등 주요 경험들을 정리했습니다."
+        storageKey="experience-subtitle"
+      />
+    </p>
+  </div>
 
-    {/* 타임라인 카드 */}
-    <div className="bg-card rounded-2xl shadow-lg overflow-hidden p-8">
-      <div className="relative border-l-2 border-primary/30 pl-6 space-y-10">
-        {aboutInfo.story.map((item, index) => {
-          // 문자열일 경우 자동으로 객체 변환
-          const story = typeof item === "string" ? { text: item } : item
+  {/* 타임라인 전체 컨테이너 */}
+  <div className="max-w-4xl mx-auto relative">
+    {/* 세로 라인 */}
+    <div className="absolute left-4 sm:left-6 top-0 bottom-0 border-l border-muted-foreground/30" />
 
-          return (
-            <div key={index} className="relative">
-              {/* 왼쪽 동그라미 */}
-              <div className="absolute -left-[1.05rem] top-1.5 w-4 h-4 bg-primary rounded-full border-4 border-card"></div>
+    <div className="space-y-10">
+      {/* ✳️ 경험 1 */}
+      <div className="relative flex gap-6">
+        {/* 타임라인 점 */}
+        <div className="flex flex-col items-center">
+          <div className="mt-1 w-3 h-3 rounded-full bg-foreground z-10" />
+        </div>
 
-              {/* 삭제 버튼 */}
-              {isEditMode && (
-                <button
-                  onClick={() => removeStory(index)}
-                  className={COMMON_STYLES.deleteButton + " top-0 right-0"}
-                >
-                  <X className={COMMON_STYLES.deleteIcon} />
-                </button>
-              )}
+        {/* 카드 */}
+        <div className="flex-1 bg-white border border-muted-foreground/20 rounded-2xl shadow-sm px-5 py-5 sm:px-7 sm:py-6">
+          {/* 기간 + 뱃지 줄 */}
+          <div className="flex flex-wrap items-center gap-3 mb-2">
+            <span className="text-xs sm:text-sm text-muted-foreground">
+              <EditableText
+                value="2025.01 -"
+                storageKey="exp-1-period"
+              />
+            </span>
 
-              {/* 날짜 */}
-              <p className="text-sm text-muted-foreground mb-1">
-                <EditableText
-                  value={story.date || "01-Jan-2025 to 31-Dec-2025"}
-                  onChange={(value) => {
-                    const newStories = [...aboutInfo.story]
-                    newStories[index] = { ...story, date: value }
-                    updateAboutInfo("story", newStories)
-                  }}
-                  storageKey={`about-story-date-${index}`}
-                />
-              </p>
-
-              {/* 활동명 */}
-              <h3 className="text-xl font-bold mb-1">
-                <EditableText
-                  value={story.text}
-                  onChange={(value) => {
-                    const newStories = [...aboutInfo.story]
-                    newStories[index] = { ...story, text: value }
-                    updateAboutInfo("story", newStories)
-                  }}
-                  storageKey={`about-story-${index}`}
-                  multiline
-                />
-              </h3>
-
-              {/* 소속/역할 */}
-              <p className="text-muted-foreground mb-3">
-                <EditableText
-                  value={story.role || "소속 / 역할을 입력하세요"}
-                  onChange={(value) => {
-                    const newStories = [...aboutInfo.story]
-                    newStories[index] = { ...story, role: value }
-                    updateAboutInfo("story", newStories)
-                  }}
-                  storageKey={`about-story-role-${index}`}
-                />
-              </p>
-
-              {/* 설명 */}
-              <p className="text-foreground/80 leading-relaxed mb-3">
-                <EditableText
-                  value={story.desc || "이 활동에 대한 설명을 넣어주세요."}
-                  onChange={(value) => {
-                    const newStories = [...aboutInfo.story]
-                    newStories[index] = { ...story, desc: value }
-                    updateAboutInfo("story", newStories)
-                  }}
-                  storageKey={`about-story-desc-${index}`}
-                  multiline
-                />
-              </p>
-
-              {/* 활동 사진 보기 버튼 */}
-              <button
-                onClick={() => setOpenedStoryIndex(index)}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition"
-                style={{
-                  backgroundColor: story.buttonColor || "#11126A", 
-                  color: "#fff",
-                }}
-              >
-                활동 사진 보기 📷
-              </button>
-
-              {/* 색상 코드 입력 (편집 모드일 때만) */}
-              {isEditMode && (
-                <div className="mt-2 text-xs text-muted-foreground">
-                  <EditableText
-                    value={story.buttonColor || "#4F46E5"}
-                    onChange={(value) => {
-                      const newStories = [...aboutInfo.story]
-                      newStories[index] = { ...story, buttonColor: value }
-                      updateAboutInfo("story", newStories)
-                    }}
-                    storageKey={`about-story-buttonColor-${index}`}
-                  />
-                </div>
-              )}
-            </div>
-          )
-        })}
-
-        {/* 문단 추가 */}
-        {isEditMode && (
-          <button
-            onClick={() =>
-              updateAboutInfo("story", [
-                ...aboutInfo.story,
-                { text: "새 활동", buttonColor: "#4F46E5" },
-              ])
-            }
-            className="mt-2 px-4 py-2 border border-dashed border-muted-foreground/30 rounded-lg hover:border-primary transition-all"
-          >
-            <Plus className="h-4 w-4 inline mr-2" />
-            문단 추가
-          </button>
-        )}
-      </div>
-    </div>
-
-    {/* 모달 (활동 사진 보기) */}
-    {openedStoryIndex !== null && (
-      <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 space-y-4">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-bold">활동 사진</h3>
-            <button
-              onClick={() => setOpenedStoryIndex(null)}
-              className="w-8 h-8 rounded-full bg-muted flex items-center justify-center"
-            >
-              <X className="w-4 h-4" />
-            </button>
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-primary/10 text-primary">
+              <EditableText
+                value="DANSA · 사진동아리"
+                storageKey="exp-1-badge"
+              />
+            </span>
           </div>
 
-          <p className="text-sm text-muted-foreground mb-4">
-            이 활동과 관련된 사진을 업로드하세요.
+          {/* 제목 */}
+          <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-1">
+            <EditableText
+              value="단국대학교 사진동아리 DANSA 홍보부장"
+              storageKey="exp-1-title"
+            />
+          </h3>
+
+          {/* 소속 / 역할 */}
+          <p className="text-sm text-muted-foreground mb-2">
+            <EditableText
+              value="소속 / 역할을 입력하세요"
+              storageKey="exp-1-role"
+            />
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <EditableMedia
-              src=""
-              onChange={() => {}}
-              type="image"
-              storageKey={`about-story-photo-${openedStoryIndex}-1`}
-              className="w-full aspect-[4/3] object-cover rounded-lg"
-              alt="활동 사진 1"
-              purpose="about-image"
+          {/* 설명 */}
+          <p className="text-sm sm:text-[15px] text-foreground leading-relaxed">
+            <EditableText
+              value="이 활동에 대한 설명을 적어주세요. 맡았던 업무, 성과, 배운 점 등을 간단히 정리해보세요."
+              storageKey="exp-1-desc"
             />
-            <EditableMedia
-              src=""
-              onChange={() => {}}
-              type="image"
-              storageKey={`about-story-photo-${openedStoryIndex}-2`}
-              className="w-full aspect-[4/3] object-cover rounded-lg"
-              alt="활동 사진 2"
-              purpose="about-image"
-            />
-            <EditableMedia
-              src=""
-              onChange={() => {}}
-              type="image"
-              storageKey={`about-story-photo-${openedStoryIndex}-3`}
-              className="w-full aspect-[4/3] object-cover rounded-lg"
-              alt="활동 사진 3"
-              purpose="about-image"
-            />
-          </div>
+          </p>
         </div>
       </div>
-    )}
-  </>
-)}
 
-<div className="my-20"></div>
+      {/* ✳️ 경험 2 */}
+      <div className="relative flex gap-6">
+        <div className="flex flex-col items-center">
+          <div className="mt-1 w-3 h-3 rounded-full bg-foreground z-10" />
+        </div>
+
+        <div className="flex-1 bg-white border border-muted-foreground/20 rounded-2xl shadow-sm px-5 py-5 sm:px-7 sm:py-6">
+          <div className="flex flex-wrap items-center gap-3 mb-2">
+            <span className="text-xs sm:text-sm text-muted-foreground">
+              <EditableText
+                value="2024.01 - 2024.12"
+                storageKey="exp-2-period"
+              />
+            </span>
+
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-primary/10 text-primary">
+              <EditableText
+                value="DANSA · 사진동아리"
+                storageKey="exp-2-badge"
+              />
+            </span>
+          </div>
+
+          <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-1">
+            <EditableText
+              value="단국대학교 사진동아리 DANSA 홍보부원"
+              storageKey="exp-2-title"
+            />
+          </h3>
+
+          <p className="text-sm text-muted-foreground mb-2">
+            <EditableText
+              value="소속 / 역할을 입력하세요"
+              storageKey="exp-2-role"
+            />
+          </p>
+
+          <p className="text-sm sm:text-[15px] text-foreground leading-relaxed">
+            <EditableText
+              value="어떤 일을 주로 했는지, 담당했던 역할과 느낀 점을 간단하게 정리해보세요."
+              storageKey="exp-2-desc"
+            />
+          </p>
+        </div>
+      </div>
+
+      {/* ✳️ 경험 3 (원하면 더 복사해서 사용) */}
+      <div className="relative flex gap-6">
+        <div className="flex flex-col items-center">
+          <div className="mt-1 w-3 h-3 rounded-full bg-foreground z-10" />
+        </div>
+
+        <div className="flex-1 bg-white border border-muted-foreground/20 rounded-2xl shadow-sm px-5 py-5 sm:px-7 sm:py-6">
+          <div className="flex flex-wrap items-center gap-3 mb-2">
+            <span className="text-xs sm:text-sm text-muted-foreground">
+              <EditableText
+                value="2023.03 - 2023.12"
+                storageKey="exp-3-period"
+              />
+            </span>
+
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-primary/10 text-primary">
+              <EditableText
+                value="기타 활동 / 대외활동"
+                storageKey="exp-3-badge"
+              />
+            </span>
+          </div>
+
+          <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-1">
+            <EditableText
+              value="다른 활동명을 입력하세요"
+              storageKey="exp-3-title"
+            />
+          </h3>
+
+          <p className="text-sm text-muted-foreground mb-2">
+            <EditableText
+              value="소속 / 역할을 입력하세요"
+              storageKey="exp-3-role"
+            />
+          </p>
+
+          <p className="text-sm sm:text-[15px] text-foreground leading-relaxed">
+            <EditableText
+              value="이 활동에서 했던 일을 간단하게 소개하세요."
+              storageKey="exp-3-desc"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 {/* ===== Awards ===== */}
@@ -588,14 +557,6 @@ return (
       storageKey="about-award-title"
     />
   </h2>
-  <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-    <EditableText
-      value={aboutInfo.awardSubtitle || "텍스트를 입력하세요"}
-      onChange={(value) => updateAboutInfo("awardSubtitle", value)}
-      storageKey="about-award-subtitle"
-      multiline
-    />
-  </p>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -700,14 +661,6 @@ return (
       storageKey="about-honor-title"
     />
   </h2>
-  <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-    <EditableText
-      value={aboutInfo.honorSubtitle || "장학·공로 내역을 입력하세요"}
-      onChange={(value) => updateAboutInfo("honorSubtitle", value)}
-      storageKey="about-honor-subtitle"
-      multiline
-    />
-  </p>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -814,14 +767,6 @@ return (
           storageKey="about-core-title"
         />
       </h2>
-      <p className="text-muted-foreground">
-        <EditableText
-          value={aboutInfo.coreSubtitle || "주요 기술과 역량을 입력하세요"}
-          onChange={(value) => updateAboutInfo("coreSubtitle", value)}
-          storageKey="about-core-subtitle"
-          multiline
-        />
-      </p>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -928,39 +873,75 @@ return (
   </div>
 )}
 
-{/* ===== 취미 & 관심사 ===== */}
+{/* ===== INTERESTS ===== */}
 {(aboutInfo.hobbies.length > 0 || isEditMode) && (
   <div className="mt-16 text-center">
-    <h3 className="text-2xl font-bold text-foreground mb-8">취미 & 관심사</h3>
+    {/* 제목 */}
+    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">
+      <EditableText
+        value={aboutInfo.hobbyTitle || "Interests"}
+        onChange={(value) =>
+          setAboutInfo((prev) => ({ ...prev, hobbyTitle: value }))
+        }
+        storageKey="about-hobby-title"
+      />
+    </h2>
+
+    {/* 취미 버튼들 */}
     <div className="flex flex-wrap justify-center gap-3">
       {aboutInfo.hobbies.map((hobby, index) => (
-        <span
+        <button
           key={index}
-          className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm relative group flex items-center justify-center"
+          type="button"
+          onClick={() => {
+            // 편집모드일 때는 클릭하면 이름 바꾸게만 하고
+            if (isEditMode) return
+
+            const hobbyName = hobby.toLowerCase()
+
+            if (hobbyName.includes("여행")) {
+              window.open("/travel", "_blank")
+            } else if (hobbyName.includes("독서") || hobbyName.includes("책")) {
+              window.open("/reading", "_blank")
+            } else if (hobbyName.includes("봉사")) {
+              window.open("/volunteer", "_blank")
+            } else {
+              alert("이 취미는 아직 별도 페이지가 준비되지 않았어요!")
+            }
+          }}
+          className="px-6 py-3 bg-primary/10 text-primary rounded-full text-sm flex items-center gap-2 hover:bg-primary/20 transition-all relative group"
         >
+          {isEditMode ? (
+            <EditableText
+              value={hobby}
+              onChange={(value) => updateHobby(index, value)}
+              storageKey={`about-hobby-${index}`}
+            />
+          ) : (
+            <span>{hobby}</span>
+          )}
+
           {isEditMode && (
             <button
-              onClick={() => removeHobby(index)}
-              className={`${COMMON_STYLES.deleteButton} opacity-0 group-hover:opacity-100 transition-opacity`}
+              onClick={(e) => {
+                e.stopPropagation()
+                removeHobby(index)
+              }}
+              className={`${COMMON_STYLES?.deleteButton || ""} opacity-0 group-hover:opacity-100 transition-opacity`}
             >
-              <X className={COMMON_STYLES.deleteIcon} />
+              <X className={COMMON_STYLES?.deleteIcon || "w-4 h-4"} />
             </button>
           )}
-          <EditableText
-            value={hobby}
-            onChange={(value) => updateHobby(index, value)}
-            storageKey={`about-hobby-${index}`}
-          />
-        </span>
+        </button>
       ))}
 
       {isEditMode && (
         <button
-          onClick={() => setShowHobbyModal(true)}
+          onClick={addHobby}
           className="px-4 py-2 border border-dashed border-muted-foreground/30 rounded-full text-sm hover:border-primary transition-all"
         >
           <Settings className="h-4 w-4 inline mr-1" />
-          편집
+          추가
         </button>
       )}
     </div>
@@ -1336,10 +1317,8 @@ return (
           </div>
         </div>
             )}
-
     </div> 
   </section> 
 </EditableBackground> 
-</> 
 )
 }

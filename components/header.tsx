@@ -29,7 +29,11 @@ export const defaultConfig = {
     logoImage: "",
     showNavBar: true,
     showThemeToggle: true,
-    items: [{"name":"Home","url":"#hero","icon":"Home","show":true},{"name":"About","url":"#about","icon":"User","show":true},{"name":"Projects","url":"#projects","icon":"Briefcase","show":true},{"name":"Contact","url":"#contact","icon":"Mail","show":true},{"name":"갤러리","url":"#gallery","icon":"Camera","show":false},{"name":"블로그","url":"#blog","icon":"Book","show":false}],
+    items: [{"name":"Home","url":"#hero","icon":"Home","show":true},
+      {"name":"About","url":"#about","icon":"User","show":true},{"name":"Projects","url":"#projects","icon":"Briefcase","show":true},
+      {"name":"Contact","url":"#contact","icon":"Mail","show":true},
+       { name: "Guestbook", url: "#guestbook", icon: "Book", show: true },
+      {"name":"갤러리","url":"#gallery","icon":"Camera","show":false},{"name":"블로그","url":"#blog","icon":"Book","show":false}],
     siteTitle: "My portfolio",
     siteDescription: "창의적인 아이디어로 웹 경험을 디자인합니다!"
   }
@@ -71,28 +75,29 @@ export function Header() {
       items?: Array<{ name: string; url: string; icon: string; show: boolean }> 
     } | null
     if (savedData && savedData.items) {
-      // 아이콘 복원
-      const restoredItems = savedData.items.map((item) => {
-        let iconComponent = Home // 기본값
+      
+      const mergedItems = defaultConfig.items.map((defaultItem) => {
+        const savedItem = savedData.items!.find(
+          (i) => i.name === defaultItem.name,
+        )
+       const iconName =
+          (savedItem?.icon || defaultItem.icon) as keyof typeof ICON_MAP
+        const iconComponent = ICON_MAP[iconName] || Home
         
-        // 문자열로 저장된 아이콘 이름을 컴포넌트로 변환
-        if (typeof item.icon === 'string' && ICON_MAP[item.icon as keyof typeof ICON_MAP]) {
-          iconComponent = ICON_MAP[item.icon as keyof typeof ICON_MAP]
-        }
-        
-        return {
-          ...item,
-          icon: iconComponent
+         return {
+          ...defaultItem,
+          ...savedItem,
+          icon: iconComponent,
         }
       })
       
       setNavConfig({ 
         ...defaultConfig, 
         ...savedData,
-        items: restoredItems
+        items: mergedItems,
       })
     }
-  }, [])
+  }, [getData])
   
   const updateNavConfig = (key: string, value: string | boolean | typeof navConfig.items) => {
     const newConfig = { ...navConfig, [key]: value }
