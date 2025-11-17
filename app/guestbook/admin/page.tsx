@@ -8,7 +8,7 @@ type GuestbookEntry = {
   createdAt: string
 }
 
-const ADMIN_PASSWORD = "change-this-password" // 👉 여기 원하는 비번으로 바꿔 쓰기
+const ADMIN_PASSWORD = "0103" // 👉 여기 원하는 비번으로 바꿔 쓰기
 
 export default function GuestbookAdminPage() {
   const [password, setPassword] = useState("")

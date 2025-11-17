@@ -1,50 +1,125 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { supabase } from "@/lib/supabaseClient"
 
-export default function GuestbookPage() {
-  const [message, setMessage] = useState("")
-  const [status, setStatus] = useState("")
+type GuestbookEntry = {
+  id: number
+  message: string
+  created_at: string
+  is_private: boolean
+}
 
-  const submitMessage = async () => {
-    if (!message.trim()) return
+const ADMIN_PASSWORD = "0103"
 
-    const res = await fetch("/api/guestbook", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
-    })
+export default function GuestbookAdminPage() {
+  const [inputPassword, setInputPassword] = useState("")
+  const [authenticated, setAuthenticated] = useState(false)
+  const [entries, setEntries] = useState<GuestbookEntry[]>([])
+  const [loading, setLoading] = useState(false)
 
-    if (res.ok) {
-      setStatus("📨 방명록이 등록되었습니다! 좋은 하루 되세요!")
-      setMessage("")
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (inputPassword === ADMIN_PASSWORD) {
+      setAuthenticated(true)
     } else {
-      setStatus("❌ 오류가 발생했습니다.")
+      alert("비밀번호가 틀렸어요 ㅠㅠ")
     }
   }
 
+  useEffect(() => {
+    if (!authenticated) return
+
+    const fetchAllEntries = async () => {
+      setLoading(true)
+      const { data, error } = await supabase
+        .from("guestbook")
+        .select("*")
+        .order("created_at", { ascending: false })
+
+      if (!error && data) {
+        setEntries(data as GuestbookEntry[])
+      }
+      setLoading(false)
+    }
+
+    fetchAllEntries()
+  }, [authenticated])
+
+  if (!authenticated) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-background text-foreground">
+        <form
+          onSubmit={handleLogin}
+          className="border rounded-2xl p-6 bg-card shadow-lg w-full max-w-sm space-y-4"
+        >
+          <h1 className="text-xl font-semibold">Guestbook Admin</h1>
+          <p className="text-sm text-muted-foreground">
+            관리자 비밀번호를 입력해 주세요.
+          </p>
+          <input
+            type="password"
+            value={inputPassword}
+            onChange={(e) => setInputPassword(e.target.value)}
+            className="w-full border rounded-lg px-3 py-2 text-sm bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="비밀번호"
+          />
+          <button
+            type="submit"
+            className="w-full px-4 py-2 rounded-lg text-sm font-medium bg-primary text-primary-foreground hover:shadow-md active:scale-95 transition-all"
+          >
+            입장하기
+          </button>
+        </form>
+      </main>
+    )
+  }
+
   return (
-    <div className="max-w-xl mx-auto py-20 px-4 text-center">
-      <h1 className="text-3xl font-bold mb-4">방명록</h1>
-      <p className="text-gray-500 mb-8">
-        한 줄로 간단히 메시지를 남겨주세요 ☺️
-      </p>
+    <main className="min-h-screen bg-background text-foreground">
+      <div className="max-w-3xl mx-auto px-4 py-16">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-6">
+          Guestbook Admin
+        </h1>
+        <p className="text-sm text-muted-foreground mb-4">
+          공개/비공개 상관없이 모든 방명록을 볼 수 있는 페이지입니다. (민아 전용)
+        </p>
 
-      <textarea
-        className="w-full border rounded-lg p-3 h-28 mb-4"
-        placeholder="응원의 한마디를 남겨주세요!"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-
-      <button
-        onClick={submitMessage}
-        className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-      >
-        등록하기
-      </button>
-
-      {status && <p className="mt-6 text-gray-700">{status}</p>}
-    </div>
+        {loading ? (
+          <p className="text-sm text-muted-foreground">불러오는 중...</p>
+        ) : entries.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            아직 아무 글도 없어요.
+          </p>
+        ) : (
+          <ul className="space-y-4">
+            {entries.map((entry) => (
+              <li
+                key={entry.id}
+                className="border rounded-2xl px-4 py-3 bg-card shadow-sm text-sm sm:text-base"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <p className="whitespace-pre-wrap break-words">
+                    {entry.message}
+                  </p>
+                  <span className="text-[10px] px-2 py-1 rounded-full border text-muted-foreground shrink-0">
+                    {entry.is_private ? "나만 보기" : "공개"}
+                  </span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-muted-foreground text-right mt-1">
+                  {new Date(entry.created_at).toLocaleString("ko-KR", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </main>
   )
 }
