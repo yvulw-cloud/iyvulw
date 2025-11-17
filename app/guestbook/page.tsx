@@ -10,31 +10,21 @@ type GuestbookEntry = {
   is_private: boolean
 }
 
-const ADMIN_PASSWORD = "0103"
-
-export default function GuestbookAdminPage() {
-  const [inputPassword, setInputPassword] = useState("")
-  const [authenticated, setAuthenticated] = useState(false)
+export default function GuestbookPage() {
+  const [message, setMessage] = useState("")
   const [entries, setEntries] = useState<GuestbookEntry[]>([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [submitting, setSubmitting] = useState(false)
+  const [isPrivate, setIsPrivate] = useState(false) // 나만 보기 여부
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (inputPassword === ADMIN_PASSWORD) {
-      setAuthenticated(true)
-    } else {
-      alert("비밀번호가 틀렸어요 ㅠㅠ")
-    }
-  }
-
+  // 초기 방명록 불러오기 (공개글만)
   useEffect(() => {
-    if (!authenticated) return
-
-    const fetchAllEntries = async () => {
+    const fetchEntries = async () => {
       setLoading(true)
       const { data, error } = await supabase
         .from("guestbook")
         .select("*")
+        .eq("is_private", false) // 공개글만
         .order("created_at", { ascending: false })
 
       if (!error && data) {
@@ -43,82 +33,119 @@ export default function GuestbookAdminPage() {
       setLoading(false)
     }
 
-    fetchAllEntries()
-  }, [authenticated])
+    fetchEntries()
+  }, [])
 
-  if (!authenticated) {
-    return (
-      <main className="min-h-screen flex items-center justify-center bg-background text-foreground">
-        <form
-          onSubmit={handleLogin}
-          className="border rounded-2xl p-6 bg-card shadow-lg w-full max-w-sm space-y-4"
-        >
-          <h1 className="text-xl font-semibold">Guestbook Admin</h1>
-          <p className="text-sm text-muted-foreground">
-            관리자 비밀번호를 입력해 주세요.
-          </p>
-          <input
-            type="password"
-            value={inputPassword}
-            onChange={(e) => setInputPassword(e.target.value)}
-            className="w-full border rounded-lg px-3 py-2 text-sm bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-            placeholder="비밀번호"
-          />
-          <button
-            type="submit"
-            className="w-full px-4 py-2 rounded-lg text-sm font-medium bg-primary text-primary-foreground hover:shadow-md active:scale-95 transition-all"
-          >
-            입장하기
-          </button>
-        </form>
-      </main>
-    )
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!message.trim()) return
+
+    setSubmitting(true)
+
+    const { data, error } = await supabase
+      .from("guestbook")
+      .insert([
+        {
+          message: message.trim(),
+          is_private: isPrivate,
+        },
+      ])
+      .select()
+      .single()
+
+    setSubmitting(false)
+
+    if (error) {
+      alert("저장 중 오류가 발생했습니다. 다시 시도해 주세요 ㅠㅠ")
+      console.error(error)
+      return
+    }
+
+    if (data && !data.is_private) {
+      // 공개글이면 리스트에 바로 추가
+      setEntries((prev) => [data as GuestbookEntry, ...prev])
+    }
+
+    setMessage("")
+    setIsPrivate(false)
   }
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <div className="max-w-3xl mx-auto px-4 py-16">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-6">
-          Guestbook Admin
+      <div className="max-w-2xl mx-auto px-4 py-16">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4">
+          Guestbook
         </h1>
-        <p className="text-sm text-muted-foreground mb-4">
-          공개/비공개 상관없이 모든 방명록을 볼 수 있는 페이지입니다. (민아 전용)
+        <p className="text-muted-foreground mb-8">
+          포트폴리오 사이트 방문 소감이나 하고 싶은 말을 편하게 남겨 주세요 :)
         </p>
 
-        {loading ? (
-          <p className="text-sm text-muted-foreground">불러오는 중...</p>
-        ) : entries.length === 0 ? (
-          <p className="text-sm text-muted-foreground">
-            아직 아무 글도 없어요.
-          </p>
-        ) : (
-          <ul className="space-y-4">
-            {entries.map((entry) => (
-              <li
-                key={entry.id}
-                className="border rounded-2xl px-4 py-3 bg-card shadow-sm text-sm sm:text-base"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <p className="whitespace-pre-wrap break-words">
+        {/* 입력 폼 */}
+        <form
+          onSubmit={handleSubmit}
+          className="mb-10 space-y-4 border rounded-2xl p-4 sm:p-6 bg-card shadow-sm"
+        >
+          <textarea
+            className="w-full min-h-[100px] rounded-xl border px-3 py-2 text-sm sm:text-base bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="남기고 싶은 말을 적어주세요!"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+
+          <div className="flex items-center justify-between gap-4">
+            <label className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+              <input
+                type="checkbox"
+                checked={isPrivate}
+                onChange={(e) => setIsPrivate(e.target.checked)}
+              />
+              <span>나만 보기 (공개 리스트에 보이지 않아요)</span>
+            </label>
+
+            <button
+              type="submit"
+              disabled={submitting || !message.trim()}
+              className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium bg-primary text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-md transition-all active:scale-95"
+            >
+              {submitting ? "남기는 중..." : "방명록 남기기"}
+            </button>
+          </div>
+        </form>
+
+        {/* 목록 */}
+        <section>
+          <h2 className="font-semibold mb-3">공개 방명록</h2>
+
+          {loading ? (
+            <p className="text-sm text-muted-foreground">불러오는 중...</p>
+          ) : entries.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              아직 공개 방명록이 없어요. 첫 번째로 남겨주세요! ✨
+            </p>
+          ) : (
+            <ul className="space-y-4">
+              {entries.map((entry) => (
+                <li
+                  key={entry.id}
+                  className="border rounded-2xl px-4 py-3 bg-card shadow-sm text-sm sm:text-base"
+                >
+                  <p className="whitespace-pre-wrap break-words mb-2">
                     {entry.message}
                   </p>
-                  <span className="text-[10px] px-2 py-1 rounded-full border text-muted-foreground shrink-0">
-                    {entry.is_private ? "나만 보기" : "공개"}
-                  </span>
-                </div>
-                <p className="text-[11px] sm:text-xs text-muted-foreground text-right mt-1">
-                  {new Date(entry.created_at).toLocaleString("ko-KR", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </p>
-              </li>
-            ))}
-          </ul>
-        )}
+                  <p className="text-[11px] sm:text-xs text-muted-foreground text-right">
+                    {new Date(entry.created_at).toLocaleString("ko-KR", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
       </div>
     </main>
   )
