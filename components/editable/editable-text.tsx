@@ -29,22 +29,28 @@ export function EditableText({
 
   // 초기값 로드
   useEffect(() => {
-    if (storageKey) {
-      const saved = getData(storageKey) as string | null
-      if (saved) {
+  if (storageKey) {
+    const saved = getData(storageKey) as string | null
+    if (saved) {
+      if (typeof onChange === "function") {
         onChange(saved)
-        setTempValue(saved)
       }
+      setTempValue(saved)
     }
-  }, [storageKey])
+  }
+}, [storageKey])
 
   const handleSave = () => {
+  if (typeof onChange === "function") {
     onChange(tempValue)
-    if (storageKey) {
-      saveData(storageKey, tempValue)
-    }
-    setIsEditing(false)
   }
+
+  if (storageKey) {
+    saveData(storageKey, tempValue)
+  }
+
+  setIsEditing(false)
+}
 
   const handleCancel = () => {
     setTempValue(value)

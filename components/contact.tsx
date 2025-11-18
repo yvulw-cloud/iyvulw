@@ -48,8 +48,8 @@ export function Contact() {
     sectionSubtitle: "프로젝트 문의나 협업 제안을 기다리고 있습니다. 편하신 방법으로 연락주세요!",
     qrTitle: "QR 코드로 연락처 저장",
     qrSubtitle: "스캔하면 연락처가 자동으로 저장됩니다",
-    bottomMessage: "함께 성장하는 파트너가 되겠습니다.",
-    bottomSubMessage: "고객님의 성공적인 프로젝트를 위해 최선을 다하겠습니다.",
+    bottomMessage: "항상 최선을 다하겠습니다.",
+    bottomSubMessage: "매일 매일 행복하세요👋🏻",
     qrContent: ["name","phone","website","email"],
     profileEmoji: "🌷",
     background: {"image":"","video":"","color":"","opacity":0}
@@ -234,14 +234,6 @@ export function Contact() {
               storageKey="contact-sectionTitle"
             />
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            <EditableText
-              value={contactInfo.sectionSubtitle}
-              onChange={(value) => updateContactInfo('sectionSubtitle', value)}
-              storageKey="contact-sectionSubtitle"
-              multiline
-            />
-          </p>
         </div>
 
         {/* 메인 좌우 분할 레이아웃 */}

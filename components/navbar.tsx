@@ -80,7 +80,7 @@ export function NavBar({ items, className, logo, logoImage, isEditMode, onEditMe
       className={cn(
         // 🎯 네비게이션 바 위치 설정
         // 모바일과 데스크톱 모두 상단에 고정
-        "fixed top-4 inset-x-4 z-50 translate-x-0 md:top-6 md:inset-x-auto md:left-1/2 md:-translate-x-1/2",
+        "fixed top-4ㄴ inset-x-4 z-50 translate-x-0 md:top-6 md:inset-x-auto md:left-1/2 md:-translate-x-1/2",
         className,
       )}
     >

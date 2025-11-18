@@ -45,7 +45,7 @@ export const defaultConfig = {
     logoImage: "",
     showNavBar: true,
     showThemeToggle: true,
-    items: [{"name":"Home","url":"#hero","icon":"Home","show":true},{"name":"About","url":"#about","icon":"User","show":true},{"name":"Projects","url":"#projects","icon":"Briefcase","show":true},{"name":"Contact","url":"#contact","icon":"Mail","show":true},{ name: "Guestbook", url: "#guestbook", icon: "Home", show: true },{"name":"갤러리","url":"#gallery","icon":"Camera","show":false},{"name":"블로그","url":"#blog","icon":"Book","show":false}],
+    items: [{"name":"Home","url":"#hero","icon":"Home","show":true},{"name":"About","url":"#about","icon":"User","show":true},{"name":"Projects","url":"#projects","icon":"Briefcase","show":true},{"name":"Contact","url":"#contact","icon":"Mail","show":true},{"id":"guestbook","label":"Guestbook","icon":"Home"},{"name":"갤러리","url":"#gallery","icon":"Camera","show":false},{"name":"블로그","url":"#blog","icon":"Book","show":false}],
     siteTitle: "My portfolio",
     siteDescription: "김민아의 포트폴리오 사이트입니다"
   }
@@ -304,7 +304,7 @@ export function Header() {
             <div className="mb-6">
               <h4 className="font-medium mb-3">메뉴 이름 변경</h4>
               <div className="space-y-3">
-                {navConfig.items.slice(0, 4).map((item, index) => (
+                {navConfig.items.map((item, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <label className="text-sm text-muted-foreground w-20">
                       {index === 0

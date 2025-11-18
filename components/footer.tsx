@@ -23,8 +23,8 @@ export function Footer() {
   // 기본 데이터
   const defaultInfo = {
     showFooter: true,
-    name: "당신의 이름",
-    description: "당신을 소개하는 짧은 문구를 작성해주세요. ",
+    name: "김민아",
+    description: "-",
     showQuickLinks: true,
     quickLinksTitle: "빠른 링크",
     showContactInfo: true,

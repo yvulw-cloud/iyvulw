@@ -120,8 +120,8 @@ export function About() {
     title: "Education",
     subtitle: "",
     background: {"image":"","video":"","color":"","opacity":0.1},
-    experienceCards: [{"icon":"graduation","title":"용인 서원고등학교","period":"2020 졸업","description":"2022학년도 관광개발학과 기획부장을 역임하면서 신입생 오리엔테이션, 학과 MT 등의 행사를 기획, 진행함. 다양한 특성의  학과생들을 이해하고 그들이 대학생활에 적응할 수 있도록 노력함."},{"icon":"graduation","title":"제주대학교 관광개발학과","period":"2020 - 2023","description":"GPA: 4.23/4.3"},{"icon":"graduation","title":"단국대학교 도시계획부동산학부","period":"2024 - 2026(졸업예정)","description":"GPA:  /4.5"},{"period":"연도 / 기간","title":"활동 제목","role":"","description":"활동 내용을 간단히 적어주세요."},{"period":"연도 / 기간","title":"활동 제목","role":"","description":"활동 내용을 간단히 적어주세요."},{"period":"연도 / 기간","title":"활동 제목","role":"","description":"활동 내용을 간단히 적어주세요."}],
-    skills: [{"icon":"barChart","title":"Excel","description":"데이터 분석 및 문서 관리 역량 / 컴퓨터활용능력 2급","barHeight":15,"barWidth":80,"barColor":"#11126A"},{"icon":"palette","title":"Adobe Illustrator","description":"시각 디자인 및 콘텐츠 제작 경험","barHeight":15,"barWidth":90,"barColor":"#11126A"},{"icon":"gitBranch","title":"Git / GitHub","description":"GitHub, Vercel을 활용한 포트폴리오 제작 · 배포 경험","barHeight":15,"barWidth":70,"barColor":"#11126A"}],
+    experienceCards: [{"icon":"graduation","title":"단국대학교 사진동아리 DANSA 홍보부장","period":"2025.01. -","description":"2022학년도 관광개발학과 기획부장을 역임하면서 신입생 오리엔테이션, 학과 MT 등의 행사를 기획, 진행함. 다양한 특성의  학과생들을 이해하고 그들이 대학생활에 적응할 수 있도록 노력함."},{"icon":"graduation","title":"단국대학교 사진동아리 DANSA 홍보부원","period":"2024.01 - 2024.12.","description":"GPA: 4.23/4.3"},{"icon":"graduation","title":"KT&G 상상프렌즈 14기","period":"2022.03. - 20202.06.","description":"GPA:  /4.5"},{"period":"2022.01. - 2022.12.","title":"제주대학교 관광개발학과 기획부장","role":"","description":"활동 내용을 간단히 적어주세요."},{"period":"2021.03. - 2021.11.","title":"제5회 대한민국 청년의 날 기획홍보단 이벤트기획팀장","role":"","description":"활동 내용을 간단히 적어주세요."},{"period":"2021.11. - 2022.02.","title":"제주대학교 35대 경상대학학생회 ‘시작’ 선거운동본부 홍보국장","role":"","description":"활동 내용을 간단히 적어주세요."},{"period":"2021.03. - 2021.12.","title":"제주대학교 관광개발학과 2학년 과대표","role":"","description":"활동 내용을 간단히 적어주세요."}],
+    skills: [{"icon":"barChart","title":"Excel","description":"데이터 분석 및 문서 관리 역량 / 컴퓨터활용능력 2급","barHeight":15,"barWidth":80,"barColor":"#11126A"},{"icon":"palette","title":"Adobe Illustrator","description":"시각 디자인 및 콘텐츠 제작 경험","barHeight":15,"barWidth":90,"barColor":"#11126A"},{"icon":"gitBranch","title":"Git / GitHub","description":"GitHub, Vercel을 활용한 포트폴리오 제작 · 배포 경험","barHeight":15,"barWidth":100,"barColor":"#11126A"}],
     storyTitle: "Experience",
     story: [{"text":"2025 단국대학교 사진동아리 DANSA 홍보부장","buttonColor":"#11126A","desc":"","role":"","date":"2025.01. -"},{"text":"2024 단국대학교 사진동아리 DANSA 홍보부원","buttonColor":"#11126A","date":"2024.01. - 2024.12."},{"text":"2022 KT&G 상상프렌즈 14기 B팀 팀장","buttonColor":"#11126A","date":"2022.03. - 2022.6."},{"text":"2022 제주대학교 관광개발학과 기획부장","buttonColor":"#11126A","date":"2022.01. - 2022.12."},{"text":"2021 제5회 대한민국 청년의 날 기획홍보단 이벤트기획팀 팀장","buttonColor":"#11126A","date":"2021.03 - 2021.11."},{"text":"제주대학교 35대 경상대학학생회 ‘시작’ 선거운동본부 홍보국장","buttonColor":"#11126A","date":"2021.10. - 2021.11."},{"text":"제주대학교 관광개발학과  2학년 과대표","buttonColor":"#11126A","date":"2021.01. - 2021.12."},{"text":"2020 제주대학교 학습공동체 기획부장","buttonColor":"#11126A","date":"2020.03. - 2020.08."}],
     storyImage: "",
@@ -130,9 +130,9 @@ export function About() {
     careerTitle: "수상",
     honorTitle: "Honors",
     honorSubtitle: "장학·공로 내역을 입력하세요",
-    honorCards: [{"title":"","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"},{"title":"새 Honors 내역","period":"","description":"","icon":"medal"}],
+    honorCards: [{"title":"2020-2 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2021-1 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2021 -2 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2022-1 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2024-1 단우장학금","period":"단국대학교 도시계획부동산학부","description":"-","icon":"medal"},{"title":"2024-2 단우장학금","period":"단국대학교 도시계획부동산학부","description":"-","icon":"medal"},{"title":"2025-1 성적우수장학금","period":"단국대학교 도시계획부동산학부","description":"-","icon":"medal"}],
     awardSubtitle: "텍스트를 입력하세요",
-    awardCards: [{"title":"","period":"","description":"","icon":"trophy"},{"title":"새 수상 내역","period":"","description":"","icon":"trophy"}],
+    awardCards: [{"title":"제주대학교 총장상","period":"2021.2.19.","description":"학습공동체 대상","icon":"trophy"},{"title":"국회 문화체육관광위원장 표창","period":"2021.12.06.","description":"청년의날 우수활동자","icon":"trophy"},{"title":"용인시장 표창","period":"2022.12.9.","description":"","icon":"trophy"},{"title":"단러닝 공모전","period":"2021.02.19.","description":"","icon":"trophy"}],
     coreTitle: "Skills",
     educationCards: [{"school":"용인 서원고등학교","period":"2020 졸업","description":" "},{"school":"제주대학교 관광개발학과","period":"2020 - 2023","description":"GPA: 4.23/4.3"},{"school":"단국대학교 도시계획부동산학부","period":"2024 - 2026(졸업예정)","description":"GPA: /4.5"}],
     hobbyTitle: "Interests"
@@ -860,7 +860,6 @@ return (
 )}
 
 <section className="mt-32 mb-24"></section>
-
 
 {/* ===== INTERESTS ===== */}
 {(aboutInfo.hobbies.length > 0 || isEditMode) && (

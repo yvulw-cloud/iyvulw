@@ -151,7 +151,10 @@ export function EditableBackground({
     }
     
     // onChange 콜백으로 부모 컴포넌트에 알림 (부모에서 파일 저장 처리)
-    onChange(data)
+    if (typeof onChange === "function") {
+  onChange(data)
+}
+
     
     // localStorage에만 저장
     if (storageKey) {
