@@ -115,23 +115,11 @@ const [image, setImage] = useState<string | null>("/uploads/volunteer-certificat
           {/* 왼쪽 - 봉사 인증 사진 */}
           <div className="flex-shrink-0">
             <div className="w-[340px] h-[440px] border rounded-xl overflow-hidden bg-muted/40 flex items-center justify-center">
-              {isEditMode ? (
-                <EditableMedia
-                  media={image || ""}
-                  onChange={handleImageChange}
-                  storageKey={VOL_IMAGE_KEY}
-                />
-              ) : image ? (
-                <img
-                  src={image}
-                  alt="봉사 인증서"
-                  className="w-full h-full object-contain bg-white"
-                />
-              ) : (
-                <span className="text-sm text-muted-foreground">
-                  봉사 인증 사진을 업로드하세요
-                </span>
-              )}
+              <img
+  src="/uploads/volunteer-certificate.jpg"
+  alt="봉사 인증서"
+  className="w-full h-full object-contain bg-white"
+/>
             </div>
           </div>
 
