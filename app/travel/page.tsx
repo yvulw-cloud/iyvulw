@@ -28,7 +28,7 @@ export default function TravelSection() {
       <div className="mt-10 mx-auto w-[500px] h-[500px] rounded-xl border border-gray-300 shadow-sm bg-gray-50 flex items-center justify-center overflow-hidden">
         <div className="relative w-full h-full">
       <Image
-  src="/uploads/travel.jpg"
+  src="/uploads/travel.JPG"
   alt="travel"
   fill
   className="object-cover"
