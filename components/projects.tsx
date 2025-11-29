@@ -9,7 +9,6 @@ export function Projects() {
 
   const { saveData } = useInlineEditor()
 
-  // 공통 onChange 함수 — 그냥 storageKey에 value 저장
   const handleChange = (key: string, value: string) => {
     saveData(key, value)
   }

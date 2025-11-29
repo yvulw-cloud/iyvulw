@@ -38,7 +38,7 @@ export function Contact() {
     title: "단국대학교 도시계획부동산학부",
     company: "",
     experience: "부동산학전공",
-    phone: "010-0000-0000",
+    phone: "010-8259-5919",
     email: "yvulw@dankook.ac.kr",
     website: "",
     location: "경기도 용인시",
@@ -49,7 +49,7 @@ export function Contact() {
     qrTitle: "QR 코드로 연락처 저장",
     qrSubtitle: "스캔하면 연락처가 자동으로 저장됩니다",
     bottomMessage: "항상 최선을 다하겠습니다.",
-    bottomSubMessage: "매일 매일 행복하세요👋🏻",
+    bottomSubMessage: "",
     qrContent: ["name","phone","website","email"],
     profileEmoji: "🌷",
     background: {"image":"","video":"","color":"","opacity":0}

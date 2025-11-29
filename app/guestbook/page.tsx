@@ -78,6 +78,7 @@ export default function GuestbookPage() {
         </h1>
         <p className="text-muted-foreground mb-8">
           포트폴리오 사이트 방문 소감이나 하고 싶은 말을 편하게 남겨 주세요 :)
+          <br/> 지우는 방법 모르니까 이상한 댓글 달지맛쎄요잇!!😡
         </p>
 
         {/* 입력 폼 */}
@@ -87,7 +88,7 @@ export default function GuestbookPage() {
         >
           <textarea
             className="w-full min-h-[100px] rounded-xl border px-3 py-2 text-sm sm:text-base bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-            placeholder="남기고 싶은 말을 적어주세요!"
+            placeholder="칭찬 위주로 적어주세요!"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
@@ -99,7 +100,7 @@ export default function GuestbookPage() {
                 checked={isPrivate}
                 onChange={(e) => setIsPrivate(e.target.checked)}
               />
-              <span>나만 보기 (공개 리스트에 보이지 않아요)</span>
+              <span>비밀로 하기 (공개 리스트에 보이지 않아요)</span>
             </label>
 
             <button

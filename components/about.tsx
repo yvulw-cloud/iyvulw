@@ -120,8 +120,8 @@ export function About() {
     title: "Education",
     subtitle: "",
     background: {"image":"","video":"","color":"","opacity":0.1},
-    experienceCards: [{"icon":"graduation","title":"단국대학교 사진동아리 DANSA 홍보부장","period":"2025.01. -","description":"2022학년도 관광개발학과 기획부장을 역임하면서 신입생 오리엔테이션, 학과 MT 등의 행사를 기획, 진행함. 다양한 특성의  학과생들을 이해하고 그들이 대학생활에 적응할 수 있도록 노력함."},{"icon":"graduation","title":"단국대학교 사진동아리 DANSA 홍보부원","period":"2024.01 - 2024.12.","description":"GPA: 4.23/4.3"},{"icon":"graduation","title":"KT&G 상상프렌즈 14기","period":"2022.03. - 20202.06.","description":"GPA:  /4.5"},{"period":"2022.01. - 2022.12.","title":"제주대학교 관광개발학과 기획부장","role":"","description":"활동 내용을 간단히 적어주세요."},{"period":"2021.03. - 2021.11.","title":"제5회 대한민국 청년의 날 기획홍보단 이벤트기획팀장","role":"","description":"활동 내용을 간단히 적어주세요."},{"period":"2021.11. - 2022.02.","title":"제주대학교 35대 경상대학학생회 ‘시작’ 선거운동본부 홍보국장","role":"","description":"활동 내용을 간단히 적어주세요."},{"period":"2021.03. - 2021.12.","title":"제주대학교 관광개발학과 2학년 과대표","role":"","description":"활동 내용을 간단히 적어주세요."}],
-    skills: [{"icon":"barChart","title":"Excel","description":"데이터 분석 및 문서 관리 역량 / 컴퓨터활용능력 2급","barHeight":15,"barWidth":80,"barColor":"#11126A"},{"icon":"palette","title":"Adobe Illustrator","description":"시각 디자인 및 콘텐츠 제작 경험","barHeight":15,"barWidth":90,"barColor":"#11126A"},{"icon":"gitBranch","title":"Git / GitHub","description":"GitHub, Vercel을 활용한 포트폴리오 제작 · 배포 경험","barHeight":15,"barWidth":100,"barColor":"#11126A"}],
+    experienceCards: [{"icon":"graduation","title":"단국대학교 사진동아리 DANSA 홍보부장","period":"2025.01. -","description":"단국대학교 사진동아리 DANSA 홍보부장으로 활동하며 출사지 선정 및 동아리 행사 운영을 지원하고, 정기사진전 기획에 참여함. 사진전 홍보물 제작 과정에서 포토샵·일러스트·인디자인을 활용하여 포스터, 도록 등의 굿즈를 제작함."},{"icon":"graduation","title":"단국대학교 사진동아리 DANSA 홍보부원","period":"2024.09. - 2024.12.","description":"단국대학교 사진동아리 DANSA 홍보부원으로 활동하며 출사지 선정 및 동아리 행사 운영을 지원하고, 정기사진전 기획에 참여함. 사진전 홍보물 제작 과정에서 포토샵·일러스트·인디자인을 활용하여 포스터, 도록 등의 굿즈를 제작함."},{"icon":"graduation","title":"KT&G 상상프렌즈 14기","period":"2022.03. - 20202.06.","description":"상상프렌즈 행사 영상 제작을 비롯하여, 두 개의 메인 프로그램( ‘청춘바다다바다’, ‘제로웨이스트 Zero정했다!’)의 기획·무대 진행 등의 활동에 적극적으로 참여함."},{"period":"2022.01. - 2022.12.","title":"제주대학교 관광개발학과 기획부장","role":"","description":"2022학년도 관광개발학과 기획부장으로서 신입생 오리엔테이션, 학과 MT 등 다양한 행사를 주도적으로 기획·진행함. 특히, 학과 구성원의 개별적 특성을 파악하고 존중하는 리더십을 발휘하여 모든 학생이 대학 생활에 원활히 적응하도록 지원함."},{"period":"2021.03. - 2021.11.","title":"제5회 대한민국 청년의 날 기획홍보단 이벤트기획팀장","role":"","description":"제5회 대한민국 청년의 날 기획홍보단 이벤트 기획팀 팀장으로 활동하며 전반적인 이벤트 기획 및 운영을 주도적으로 총괄함. 우수활동자로 선정되어 문화체육관광부 의원상을 수상함."},{"period":"2021.11. - 2022.02.","title":"제주대학교 35대 경상대학 학생회 ‘시작’ 선거운동본부 홍보국장","role":"","description":"제주대학교 35대 경상대학 학생회 ‘시작’ 선거본부 홍보국장으로서 공약 시안 정리, 홍보물 디자인, 콘텐츠 제작, 사진·영상 촬영, SNS 홍보 관리 등 선거본부의 실무 전반에 참여함. (당선)"},{"period":"2021.03. - 2021.12.","title":"제주대학교 관광개발학과 2학년 과대표","role":"","description":"2021학년도 관광개발학과 2학년 부과대로서 다양한 학과 프로그램과 행사를 기획·진행 하여 학과 운영에 적극적으로 참여함."}],
+    skills: [{"icon":"barChart","title":"Excel","description":"데이터 분석 및 문서 관리 역량 / 컴퓨터활용능력 2급","barHeight":15,"barWidth":80,"barColor":"#11126A"},{"icon":"palette","title":"Adobe Illustrator, InDesign","description":"시각 디자인 및 콘텐츠 제작 경험","barHeight":15,"barWidth":90,"barColor":"#11126A"},{"icon":"gitBranch","title":"Git / GitHub","description":"GitHub, Vercel을 활용한 포트폴리오 제작 · 배포 경험","barHeight":15,"barWidth":85,"barColor":"#11126A"}],
     storyTitle: "Experience",
     story: [{"text":"2025 단국대학교 사진동아리 DANSA 홍보부장","buttonColor":"#11126A","desc":"","role":"","date":"2025.01. -"},{"text":"2024 단국대학교 사진동아리 DANSA 홍보부원","buttonColor":"#11126A","date":"2024.01. - 2024.12."},{"text":"2022 KT&G 상상프렌즈 14기 B팀 팀장","buttonColor":"#11126A","date":"2022.03. - 2022.6."},{"text":"2022 제주대학교 관광개발학과 기획부장","buttonColor":"#11126A","date":"2022.01. - 2022.12."},{"text":"2021 제5회 대한민국 청년의 날 기획홍보단 이벤트기획팀 팀장","buttonColor":"#11126A","date":"2021.03 - 2021.11."},{"text":"제주대학교 35대 경상대학학생회 ‘시작’ 선거운동본부 홍보국장","buttonColor":"#11126A","date":"2021.10. - 2021.11."},{"text":"제주대학교 관광개발학과  2학년 과대표","buttonColor":"#11126A","date":"2021.01. - 2021.12."},{"text":"2020 제주대학교 학습공동체 기획부장","buttonColor":"#11126A","date":"2020.03. - 2020.08."}],
     storyImage: "",
@@ -130,12 +130,16 @@ export function About() {
     careerTitle: "수상",
     honorTitle: "Honors",
     honorSubtitle: "장학·공로 내역을 입력하세요",
-    honorCards: [{"title":"2020-2 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2021-1 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2021 -2 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2022-1 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2024-1 단우장학금","period":"단국대학교 도시계획부동산학부","description":"-","icon":"medal"},{"title":"2024-2 단우장학금","period":"단국대학교 도시계획부동산학부","description":"-","icon":"medal"},{"title":"2025-1 성적우수장학금","period":"단국대학교 도시계획부동산학부","description":"-","icon":"medal"}],
+    honorCards: [{"title":"2020-2 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2021-1 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2021 -2 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2022-1 성적우수장학금","period":"제주대학교 관광개발학과","description":"(전액)","icon":"medal"},{"title":"2024-1 단우장학금","period":"단국대학교 도시계획부동산학부","description":"","icon":"medal"},{"title":"2024-2 단우장학금","period":"단국대학교 도시계획부동산학부","description":"","icon":"medal"},{"title":"2025-1 성적우수장학금","period":"단국대학교 도시계획부동산학부","description":"","icon":"medal"}],
     awardSubtitle: "텍스트를 입력하세요",
-    awardCards: [{"title":"제주대학교 총장상","period":"2021.2.19.","description":"학습공동체 대상","icon":"trophy"},{"title":"국회 문화체육관광위원장 표창","period":"2021.12.06.","description":"청년의날 우수활동자","icon":"trophy"},{"title":"용인시장 표창","period":"2022.12.9.","description":"","icon":"trophy"},{"title":"단러닝 공모전","period":"2021.02.19.","description":"","icon":"trophy"}],
+    awardCards: [{"title":"제주대학교 총장상","period":"2021.2.19.","description":"일러스트 등 디자인툴을 익혀 제작한 대학 생활 안내 자료를 배포하여 학우들의 정보 접근성 향상에 기여하였으며, 이 활동으로 『2020학년도 제주대학교 학습공동체』 대상을 수상함.","icon":"trophy"},{"title":"국회 문화체육관광 위원장 표창","period":"2021.12.06.","description":"제5회 대한민국 청년의 날 우수활동자","icon":"trophy"},{"title":"용인시장 표창","period":"2022.12.9.","description":"용인시 우수봉사자 유공 표창 수상","icon":"trophy"},{"title":"2024-1 단러닝 공모전 장려상","period":"2021.02.19.","description":"‘부동산빅데이터분석’ 과제 기반 신혼부부 주택 마련 프로젝트로 학생 중심 자율적 학습공동체 공모전 장려상을 수상함.","icon":"trophy"}],
     coreTitle: "Skills",
     educationCards: [{"school":"용인 서원고등학교","period":"2020 졸업","description":" "},{"school":"제주대학교 관광개발학과","period":"2020 - 2023","description":"GPA: 4.23/4.3"},{"school":"단국대학교 도시계획부동산학부","period":"2024 - 2026(졸업예정)","description":"GPA: /4.5"}],
-    hobbyTitle: "Interests"
+    hobbyTitle: "Interests",
+    languageTitle: "Languages",
+    languages: [{"icon":"globe","title":"TOEIC","description":"830점"},{"icon":"globe","title":"IELTS","description":"Overall 7.5"},{"icon":"globe","title":"HSK","description":"5급"}],
+    aboutIntroFirst: "시행착오가 많은 사람입니다.",
+    aboutIntroBody: "저는 시행착오가 많은 사람입니다. 17살, 미용 인턴으로 처음 일을 시작했습니다. 3년간 현장을 경험하며 디자이너 승급을 준비할 만큼 진지하게 임했습니다. 일을 하면서도 학업을 놓지 않았고, 관광학에 관심이 생겨 대학에 진학했습니다. 대학에서는 매 학기를 증명의 시간으로 삼았습니다. 전 학기 성적우수 장학금이라는 결과로 제 태도를 입증할 수 있었습니다. 관광학을 공부하며 사람의 이동, 지역의 변화, 공간의 활용을 배웠고, 자연스럽게 더 본질적인 질문에 닿았습니다. 지역은 어떻게 변하고, 무엇이 가치를 만들며, 공간은 어떻게 경제를 움직이는가. 그 답이 부동산에 있었습니다. 단순한 방문이 아니라 도시 전체의 구조를 이해하는 일, 거기서 더 큰 몰입을 느꼈습니다. 수많은 시행착오 끝에 제가 배운 것은 분명합니다. \"좋아하는 일을 하는 것보다, 지금 하는 일을 좋아할 줄 아는 것.\" 이 태도 덕분에 어떤 분야에서도 성장을 만들어낼 수 있었고, 지금의 부동산학에서도 같은 방식으로 스스로 방향을 넓혀가고 있습니다."
   }
   
   const DEFAULT_ABOUT_INFO = {
@@ -269,6 +273,47 @@ return (
       <section id="about" className="w-full">
         <div className="max-w-7xl mx-auto px-[14px] sm:px-[28px] lg:px-[36px]">
           
+      
+   {/* ===== About Intro ===== */}
+<section id="about-intro" className="mb-20">
+  <div className="max-w-3xl mx-auto px-4 text-center">
+
+    {/* 제목 — Education 과 동일한 스타일 */}
+    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
+      <EditableText
+        value={aboutInfo.aboutIntroTitle || "About Me"}
+        onChange={(value) => updateAboutInfo("aboutIntroTitle", value)}
+        storageKey="about-intro-title"
+      />
+    </h2>
+
+    {/* 본문 1개 — 첫 줄은 Bold */}
+    <div className="text-lm sm:text-base leading-relaxed text-muted-foreground space-y-2">
+
+      {/* 첫 줄 Bold */}
+      <p className="font-semibold">
+        <EditableText
+          value={aboutInfo.aboutIntroFirst || "여기에 첫 문장을 입력하세요."}
+          onChange={(value) => updateAboutInfo("aboutIntroFirst", value)}
+          storageKey="about-intro-first"
+        />
+      </p>
+
+      {/* 나머지 본문 (일반 텍스트) */}
+      <p>
+        <EditableText
+          value={aboutInfo.aboutIntroBody || ""}
+          onChange={(value) => updateAboutInfo("aboutIntroBody", value)}
+          storageKey="about-intro-body"
+        />
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
 {/*  Education  */}
    <div className="text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
@@ -302,7 +347,6 @@ return (
         )}
         <div className="flex items-start space-x-4">
           <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-            {/* 교육 아이콘 없으면 기본 Briefcase 쓰기 */}
             <GraduationCap className="h-6 w-6 text-primary" />
           </div>
           <div className="flex-1">
@@ -860,6 +904,71 @@ return (
 )}
 
 <section className="mt-32 mb-24"></section>
+
+
+{/* ===== Languages (Recommended) ===== */}
+{aboutInfo.languages?.length > 0 && (
+  <div className="mb-16 mt-24">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+        <EditableText
+          value={aboutInfo.languageTitle || "Languages"}
+          onChange={(value) => updateAboutInfo("languageTitle", value)}
+          storageKey="about-language-title"
+        />
+      </h2>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {aboutInfo.languages.map((lang, index) => {
+        const Icon =
+          SKILL_ICONS[lang.icon as keyof typeof SKILL_ICONS] || Globe
+
+        return (
+          <div
+            key={index}
+            className="
+              text-center
+              rounded-2xl
+              bg-white
+              shadow-sm
+              border border-black/5
+              px-4 py-8
+              hover:shadow-md
+              transition-all
+            "
+          >
+            {/* 시험별 아이콘 */}
+            <div className="w-14 h-14 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+              <Icon className="h-7 w-7 text-primary" />
+            </div>
+
+            {/* 시험명 */}
+            <h4 className="font-semibold text-foreground mb-1">
+              <EditableText
+                value={lang.title}
+                onChange={(value) => updateLanguage(index, "title", value)}
+                storageKey={`about-language-${index}-title`}
+              />
+            </h4>
+
+            {/* 점수/급수 — 더 강조 */}
+            <p className="text-sm text-muted-foreground font-normal">
+  <EditableText
+    value={lang.description}
+    onChange={(value) =>
+      updateLanguage(index, "description", value)
+    }
+    storageKey={`about-language-${index}-description`}
+  />
+</p>
+          </div>
+        )
+      })}
+    </div>
+  </div>
+)}
+
 
 {/* ===== INTERESTS ===== */}
 {(aboutInfo.hobbies.length > 0 || isEditMode) && (

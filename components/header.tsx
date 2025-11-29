@@ -41,7 +41,7 @@ const ICON_MAP = {
 
 // 기본 데이터
 export const defaultConfig = {
-    logo: "MINAH",
+    logo: "Portfolio",
     logoImage: "",
     showNavBar: true,
     showThemeToggle: true,

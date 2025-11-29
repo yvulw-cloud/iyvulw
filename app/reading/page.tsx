@@ -21,7 +21,7 @@ export default function ReadingPage() {
   const [quotes, setQuotes] = useState<QuoteItem[]>([
     { sentence: "", book: "", author: "" },
   ])
-  const [title, setTitle] = useState("독서 기록")
+  const [title, setTitle] = useState("📚독서")
   const [subtitle, setSubtitle] = useState("인상 깊었던 문장을 기록하세요.")
 
   // 처음 들어올 때 로컬에서 가져오기
@@ -93,7 +93,7 @@ export default function ReadingPage() {
         <input
           value={title}
           onChange={(e) => canEdit && saveTitle(e.target.value)}
-          className="text-4xl font-bold mb-2 bg-transparent text-center w-full focus:outline-none"
+          className="text-3xl font-bold mb-2 bg-transparent text-center w-full focus:outline-none"
           readOnly={!canEdit}
         />
 
@@ -101,7 +101,7 @@ export default function ReadingPage() {
         <input
           value={subtitle}
           onChange={(e) => canEdit && saveSubtitle(e.target.value)}
-          className="text-muted-foreground mb-8 text-lg bg-transparent text-center w-full focus:outline-none"
+          className="text-muted-foreground mb-8 bg-transparent text-center w-full focus:outline-none"
           readOnly={!canEdit}
         />
 

@@ -10,7 +10,7 @@ type GuestbookEntry = {
   is_private: boolean
 }
 
-const ADMIN_PASSWORD = "0103" // 👉 민아가 원하는 비번으로 바꿔도 됨
+const ADMIN_PASSWORD = "0103" 
 
 export default function GuestbookAdminPage() {
   const [inputPassword, setInputPassword] = useState("")
@@ -82,7 +82,7 @@ export default function GuestbookAdminPage() {
           Guestbook Admin
         </h1>
         <p className="text-sm text-muted-foreground mb-4">
-          공개/비공개 상관없이 모든 방명록을 볼 수 있는 페이지입니다. (민아 전용)
+          공개/비공개 상관없이 모든 방명록을 볼 수 있는 페이지입니다. (관리자 전용)
         </p>
 
         {loading ? (
