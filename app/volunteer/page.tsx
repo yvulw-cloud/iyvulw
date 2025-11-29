@@ -21,10 +21,13 @@ export default function VolunteerSection() {
   const getData = inline?.getData
   const saveData = inline?.saveData
 
-  const [title, setTitle] = useState("자원봉사 활동")
-  const [subtitle, setSubtitle] = useState("2021.05 ~ 2022.04 / 총 80시간")
-  const [image, setImage] = useState<string | null>(null)
+  const [title, setTitle] = useState("🌱봉사")
+  const [subtitle, setSubtitle] = useState("2020.05 ~ 2025. / 총 623시간")
+const [image, setImage] = useState<string | null>("/uploads/volunteer-certificate.jpg")
   const [items, setItems] = useState<VolunteerItem[]>([
+    { label: "한국중앙자원봉사센터", hours: "80시간" },
+    { label: "한국중앙자원봉사센터", hours: "80시간" },
+    { label: "한국중앙자원봉사센터", hours: "80시간" },
     { label: "한국중앙자원봉사센터", hours: "80시간" },
   ])
 
