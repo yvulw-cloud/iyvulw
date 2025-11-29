@@ -26,7 +26,7 @@ const introLines: string[] = [
 
   "궁금한 점은 포트폴리오에 기재된 이메일로 편하게 연락 주세요.",
 ]
-
+{/* test line */}
 export function IntroPopup() {
   const [isOpen, setIsOpen] = useState(true) 
 
