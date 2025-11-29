@@ -14,7 +14,6 @@ type QuoteItem = {
 }
 
 export default function ReadingPage() {
-  // 컨텍스트 있으면 쓰고, 없으면 그냥 편집 가능하게(true)
   const inline = typeof useInlineEditor === "function" ? useInlineEditor() : null
   const canEdit = inline ? inline.isEditMode : true
 
@@ -24,7 +23,6 @@ export default function ReadingPage() {
   const [title, setTitle] = useState("📚독서")
   const [subtitle, setSubtitle] = useState("인상 깊었던 문장을 기록하세요.")
 
-  // 처음 들어올 때 로컬에서 가져오기
   useEffect(() => {
     if (typeof window === "undefined") return
 
@@ -44,7 +42,6 @@ export default function ReadingPage() {
     if (s) setSubtitle(s)
   }, [])
 
-  // 공통 저장
   const persistQuotes = (next: QuoteItem[]) => {
     setQuotes(next)
     if (typeof window !== "undefined") {
@@ -87,30 +84,51 @@ export default function ReadingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-muted/20 py-12">
-      <div className="max-w-3xl mx-auto px-4 text-center">
-        {/* 제목 */}
-        <input
-          value={title}
-          onChange={(e) => canEdit && saveTitle(e.target.value)}
-          className="text-3xl font-bold mb-2 bg-transparent text-center w-full focus:outline-none"
-          readOnly={!canEdit}
-        />
+    <section className="py-16 text-center">
 
-        {/* 소제목 */}
-        <input
-          value={subtitle}
-          onChange={(e) => canEdit && saveSubtitle(e.target.value)}
-          className="text-muted-foreground mb-8 bg-transparent text-center w-full focus:outline-none"
-          readOnly={!canEdit}
-        />
+      {/* 제목 */}
+      <div className="text-center mb-4">
+        {canEdit ? (
+          <input
+            value={title}
+            onChange={(e) => saveTitle(e.target.value)}
+            className="text-3xl font-bold bg-transparent w-full text-center focus:outline-none"
+          />
+        ) : (
+          <h2 className="text-3xl font-bold">{title}</h2>
+        )}
+      </div>
+
+      {/* 소제목 */}
+      <div className="text-center mb-8">
+        {canEdit ? (
+          <input
+            value={subtitle}
+            onChange={(e) => saveSubtitle(e.target.value)}
+            className="text-muted-foreground bg-transparent w-full text-center focus:outline-none"
+          />
+        ) : (
+          <p className="text-muted-foreground">{subtitle}</p>
+        )}
+      </div>
+
+      {/* 블로그 버튼 */}
+      <a
+        href="https://blog.naver.com/yvulw"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block px-6 py-3 rounded-full font-medium text-white transition mb-10"
+        style={{ backgroundColor: "#11126A" }}
+      >
+        📖 독서 기록 보러가기
+      </a>
 
         {/* 문장 카드들 */}
         <div className="flex flex-col gap-3">
           {quotes.map((q, i) => (
             <div
-              key={i}
-              className="relative bg-white border border-muted-foreground/20 rounded-xl shadow-sm px-5 py-3 flex flex-col justify-center items-center text-center transition-all hover:shadow-md hover:bg-muted/10"
+  key={i}
+  className="relative bg-white border border-muted-foreground/20 rounded-xl shadow-sm px-5 py-4 flex flex-col justify-center items-center text-center transition-all hover:shadow-md hover:bg-muted/10 mx-auto w-full max-w-[700px]"
             >
    
    {/* 문장 */}
@@ -165,7 +183,7 @@ export default function ReadingPage() {
                   canEdit && updateField(i, "author", e.target.value)
                 }
                 placeholder="저자"
-                className="italic text-[13px] text-muted-foreground/80 text-center border-none bg-transparent focus:outline-none mt-[-2px]"
+                className=" text-[13px] text-muted-foreground/80 text-center border-none bg-transparent focus:outline-none mt-[-2px]"
                 readOnly={!canEdit}
               />
 
@@ -191,7 +209,5 @@ export default function ReadingPage() {
             </button>
           )}
         </div>
-      </div>
-    </div>
-  )
+    </section>)
 }
