@@ -1,0 +1,8 @@
+# Ensure uploads folder is always tracked by Git
+public/uploads/** linguist-vendored=false
+
+# Treat image files as binary to avoid corruption or ignore issues
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
