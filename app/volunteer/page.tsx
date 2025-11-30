@@ -25,10 +25,10 @@ export default function VolunteerSection() {
   const [subtitle, setSubtitle] = useState("2020.~2025. / 총 623시간")
 const [image, setImage] = useState<string | null>("/uploads/volunteer-certificate.jpg")
   const [items, setItems] = useState<VolunteerItem[]>([
-    { label: "한국중앙자원봉사센터", hours: "80시간" },
-    { label: "한국중앙자원봉사센터", hours: "80시간" },
-    { label: "한국중앙자원봉사센터", hours: "80시간" },
-    { label: "한국중앙자원봉사센터", hours: "80시간" },
+    { label: "행사 기획·현장 지원", hours: "70시간" },
+    { label: "청소년 멘토링 프로그램", hours: "173시간" },
+    { label: "도서관 운영 지원", hours: "350시간" },
+    { label: "지역 생태·환경 보전 활동", hours: "30시간" },
   ])
 
   useEffect(() => {
