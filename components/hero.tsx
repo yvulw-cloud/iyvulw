@@ -194,14 +194,15 @@ export function Hero() {
 <div className="order-1 md:order-2 flex justify-center">
   <div className="relative">
     <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl">
-  <EditableMedia
-  value={heroInfo.profileImage || "/uploads/profile.jpg"}
+ <EditableMedia
+  src={heroInfo.profileImage || "/uploads/profile.jpg"}
   onChange={(url) => updateHeroInfo("profileImage", url)}
   type="image"
   storageKey="hero-profileImage"
   className="w-full h-full object-cover"
   alt="프로필"
 />
+
 
     </div>
   </div>
