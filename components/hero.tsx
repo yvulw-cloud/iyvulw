@@ -48,7 +48,7 @@ export function Hero() {
     greeting: "안녕하세요",
     name: "김민아입니다",
     title: "MINAH KIM",
-    description: "",
+    description: "성장하는 과정을 기록하고 있습니다.",
     profileImage: "",
     backgroundOpacity: 0.1
   }
