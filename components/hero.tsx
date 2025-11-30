@@ -49,8 +49,8 @@ export function Hero() {
     name: "김민아입니다",
     title: "MINAH KIM",
     description: "",
-    profileImage: "/uploads/profile.jpg",
-    backgroundOpacity: 0.1,
+    profileImage: "",
+    backgroundOpacity: 0.1
   }
 
   const [backgroundData, setBackgroundData] = useState({
