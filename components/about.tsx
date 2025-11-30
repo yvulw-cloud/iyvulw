@@ -278,7 +278,6 @@ return (
 <section id="about-intro" className="mb-20">
   <div className="max-w-3xl mx-auto px-4 text-center">
 
-    {/* 제목 — Education 과 동일한 스타일 */}
     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
       <EditableText
         value={aboutInfo.aboutIntroTitle || "About Me"}

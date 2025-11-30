@@ -3,13 +3,17 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowDown, Instagram, MessageCircle, Mail, Youtube, Facebook, Twitter, Globe, Linkedin, Settings, X, Plus, Github, Twitch, Send, MessageSquare } from "lucide-react"
+import {
+  ArrowDown, Instagram, MessageCircle, Mail, Youtube,
+  Facebook, Twitter, Globe, Linkedin, Settings, X,
+  Plus, Github, Twitch, Send, MessageSquare
+} from "lucide-react"
 import { EditableText } from "@/components/editable/editable-text"
 import { EditableMedia } from "@/components/editable/editable-media"
 import { EditableBackground } from "@/components/editable/editable-background"
 import { useInlineEditor } from "@/contexts/inline-editor-context"
 
-// 사용 가능한 아이콘 정의
+// 아이콘 리스트
 const AVAILABLE_ICONS = {
   instagram: Instagram,
   youtube: Youtube,
@@ -30,111 +34,83 @@ const AVAILABLE_ICONS = {
 }
 
 export function Hero() {
-  const { getData, saveData, isEditMode, saveToFile, saveFieldToFile } = useInlineEditor()
-  
-  // 초기 데이터 - 배열 형태로 변경
-  const defaultSocialLinks = [{"name":"Mail","icon":"mail","url":"yvulw@naver.com"},{"name":"Instagram","icon":"instagram","url":"https://instagram.com/iyvulw"},{"name":"YouTube","icon":"youtube","url":"https://youtube.com/@yvulw"},{"name":"Blog","icon":"discord","url":"https://blog.naver.com/yvulw"}]
-  
+  const { getData, saveData, isEditMode, saveToFile, saveFieldToFile } =
+    useInlineEditor()
+
+  const defaultSocialLinks = [
+    { name: "Mail", icon: "mail", url: "yvulw@naver.com" },
+    { name: "Instagram", icon: "instagram", url: "https://instagram.com/iyvulw" },
+    { name: "YouTube", icon: "youtube", url: "https://youtube.com/@yvulw" },
+    { name: "Blog", icon: "discord", url: "https://blog.naver.com/yvulw" },
+  ]
+
   const defaultInfo = {
     greeting: "안녕하세요",
-    name: "김민아",
+    name: "김민아입니다",
     title: "MINAH KIM",
     description: "",
-    profileImage: "/uploads/general-1764513550489.jpg",
-    backgroundImage: "",
-    backgroundVideo: "",
+    profileImage: "/uploads/profile.jpg",
     backgroundOpacity: 0.1,
-    projectButton: "프로젝트 보기",
-    background: {"image":"","video":"","color":"","opacity":0.1}
   }
 
-  const [backgroundData, setBackgroundData] = useState<{ image: string; video: string; color: string; opacity: number } | null>(null)
+  const [backgroundData, setBackgroundData] = useState({
+    image: "",
+    video: "",
+    color: "",
+    opacity: 0.1,
+  })
+
   const [heroInfo, setHeroInfo] = useState(defaultInfo)
   const [socialLinks, setSocialLinks] = useState(defaultSocialLinks)
   const [showSocialEditor, setShowSocialEditor] = useState(false)
   const [showIconPicker, setShowIconPicker] = useState<number | null>(null)
 
-  // localStorage에서 데이터 로드 - 편집 모드가 변경될 때마다 실행
+  // 데이터 로드
   useEffect(() => {
-    const savedData = getData('hero-info') as typeof defaultInfo | null
-    if (savedData) {
-      setHeroInfo({ ...defaultInfo, ...savedData })
-      // background 데이터가 있으면 설정 (savedData에는 background 필드가 없음)
-    }
-    
-    const savedSocial = getData('hero-social-links') as { name: string; icon: string; url: string }[] | null
-    if (savedSocial) {
-      setSocialLinks(savedSocial)
-    }
-    
-    const savedBg = getData('hero-background') as { image: string; video: string; color: string; opacity: number } | null
-    if (savedBg) {
-      setBackgroundData(savedBg)
-    }
-  }, [isEditMode]) // isEditMode가 변경될 때마다 데이터 다시 로드
+    const savedData = getData("hero-info")
+    if (savedData) setHeroInfo({ ...defaultInfo, ...savedData })
 
+    const savedSocial = getData("hero-social-links")
+    if (savedSocial) setSocialLinks(savedSocial)
+
+    const savedBg = getData("hero-background")
+    if (savedBg) setBackgroundData(savedBg)
+  }, [isEditMode])
+
+  // heroInfo 업데이트
   const updateHeroInfo = (key: string, value: string) => {
-    // 업데이트
-    const newInfo = {
-      ...heroInfo,
-      [key]: value
-    }
+    const newInfo = { ...heroInfo, [key]: value }
     setHeroInfo(newInfo)
-    saveData('hero-info', newInfo)
-  }
-  
-  const addSocialLink = () => {
-    const newLinks = [...socialLinks]
-    newLinks.push({ name: '새 링크', icon: 'globe', url: '' })
-    setSocialLinks(newLinks)
-    saveData('hero-social-links', newLinks)
-  }
-  
-  const updateSocialLink = (index: number, field: 'name' | 'icon' | 'url', value: string) => {
-    const newLinks = [...socialLinks]
-    newLinks[index] = { ...newLinks[index], [field]: value }
-    setSocialLinks(newLinks)
-    saveData('hero-social-links', newLinks)
-  }
-  
-  const removeSocialLink = (index: number) => {
-    const newLinks = socialLinks.filter((_, i) => i !== index)
-    setSocialLinks(newLinks)
-    saveData('hero-social-links', newLinks)
+    saveData("hero-info", newInfo)
   }
 
   const scrollToAbout = () => {
-    const aboutSection = document.querySelector("#about")
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth" })
-    }
+    const el = document.querySelector("#about")
+    if (el) el.scrollIntoView({ behavior: "smooth" })
   }
 
   const scrollToProjects = () => {
-    const projectsSection = document.querySelector("#projects")
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: "smooth" })
-    }
+    const el = document.querySelector("#projects")
+    if (el) el.scrollIntoView({ behavior: "smooth" })
   }
 
+  // 소셜 아이콘 렌더링
+  const renderSocialIcon = (link, index) => {
+    const Icon = AVAILABLE_ICONS[link.icon] || Globe
+    const isEmail = link.icon === "mail" || link.url.startsWith("mailto:")
+    const href = isEmail && !link.url.startsWith("mailto:")
+      ? `mailto:${link.url}`
+      : link.url
 
-  // 소셜 아이콘 렌더링 함수
-  const renderSocialIcon = (link: { name: string; icon: string; url: string }, index: number) => {
-    const Icon = AVAILABLE_ICONS[link.icon as keyof typeof AVAILABLE_ICONS] || Globe
     if (!link.url && !isEditMode) return null
-    
-    const isEmail = link.icon === 'mail' || link.url.startsWith('mailto:')
-    const href = isEmail && !link.url.startsWith('mailto:') ? `mailto:${link.url}` : link.url
-    
+
     return (
       <a
         key={index}
-        href={href || '#'}
+        href={href || "#"}
         target={isEmail ? undefined : "_blank"}
-        rel={isEmail ? undefined : "noopener noreferrer"}
+        rel="noopener noreferrer"
         className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center hover:bg-foreground hover:text-background transition-all hover:scale-110"
-        onClick={!link.url ? (e) => e.preventDefault() : undefined}
-        title={link.name}
       >
         <Icon className="h-5 w-5" />
       </a>
@@ -143,101 +119,70 @@ export function Hero() {
 
   return (
     <EditableBackground
-      image={backgroundData?.image || ""}
-      video={backgroundData?.video || ""}
-      color={backgroundData?.color || ""}
-      opacity={backgroundData?.opacity || 0.1}
+      image={backgroundData.image}
+      video={backgroundData.video}
+      color={backgroundData.color}
+      opacity={backgroundData.opacity}
       onChange={(data) => {
-        const newData = {
-          image: backgroundData?.image || "",
-          video: backgroundData?.video || "",
-          color: backgroundData?.color || "",
-          opacity: backgroundData?.opacity || 0.1,
-          ...data
-        }
+        const newData = { ...backgroundData, ...data }
         setBackgroundData(newData)
-        saveData('hero-background', newData)
-        
-        // heroInfo도 업데이트 (파일 저장을 위해)
-        const updatedHeroInfo = { ...heroInfo, background: newData }
-        setHeroInfo(updatedHeroInfo)
-        saveData('hero-info', updatedHeroInfo)
+        saveData("hero-background", newData)
       }}
       storageKey="hero-background"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      <section 
-        id="hero" 
-        className="w-full"
-      >
+      <section id="hero" className="w-full">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* 왼쪽: 텍스트 내용 */}
+
+            {/* 왼쪽 텍스트 */}
             <div className="order-2 md:order-1">
               <h2 className="text-3xl font-bold mb-2">
                 <EditableText
                   value={heroInfo.greeting}
-                  onChange={(value) => updateHeroInfo('greeting', value)}
+                  onChange={(v) => updateHeroInfo("greeting", v)}
                   storageKey="hero-greeting"
                 />
               </h2>
+
               <h1 className="text-5xl md:text-6xl font-bold mb-4">
                 <EditableText
                   value={heroInfo.name}
-                  onChange={(value) => updateHeroInfo('name', value)}
+                  onChange={(v) => updateHeroInfo("name", v)}
                   storageKey="hero-name"
                 />
               </h1>
+
               <p className="text-2xl mb-4 text-muted-foreground">
                 <EditableText
                   value={heroInfo.title}
-                  onChange={(value) => updateHeroInfo('title', value)}
+                  onChange={(v) => updateHeroInfo("title", v)}
                   storageKey="hero-title"
                 />
               </p>
+
               <p className="text-lg mb-8 text-muted-foreground">
                 <EditableText
                   value={heroInfo.description}
-                  onChange={(value) => updateHeroInfo('description', value)}
+                  onChange={(v) => updateHeroInfo("description", v)}
                   storageKey="hero-description"
                   multiline
                 />
               </p>
 
-              {/* 프로젝트 보기 버튼 */}
-              <div className="mb-8">
-                {isEditMode ? (
-                  <div className="flex flex-col gap-2 w-fit">
-                    <input
-                      type="text"
-                      value={heroInfo.projectButton}
-                      onChange={(e) => updateHeroInfo('projectButton', e.target.value)}
-                      placeholder="프로젝트 버튼 텍스트"
-                      className="px-3 py-2 border rounded-lg bg-background text-sm text-center"
-                    />
-                    <Button onClick={scrollToProjects} size="lg" disabled className="justify-center">
-                      {heroInfo.projectButton || "프로젝트 보기"}
-                    </Button>
-                  </div>
-                ) : (
-                  heroInfo.projectButton && (
-                    <Button onClick={scrollToProjects} size="lg" className="justify-center">
-                      {heroInfo.projectButton}
-                    </Button>
-                  )
-                )}
-              </div>
+              {/* 프로젝트 버튼 */}
+              <Button onClick={scrollToProjects} size="lg">
+                {heroInfo.projectButton || "프로젝트 보기"}
+              </Button>
 
-              {/* 소셜 링크 */}
-              <div className="flex gap-4 flex-wrap items-center">
-                {socialLinks.map((link, index) => renderSocialIcon(link, index))}
-                
-                {/* 편집 버튼 */}
+              {/* 소셜 */}
+              <div className="flex gap-4 flex-wrap items-center mt-8">
+                {socialLinks.map(renderSocialIcon)}
                 {isEditMode && (
                   <button
                     onClick={() => setShowSocialEditor(true)}
-                    className="w-10 h-10 rounded-full border-2 border-dashed border-foreground/20 flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all"
-                    title="소셜 링크 편집"
+                    className="w-10 h-10 rounded-full border-2 border-dashed border-foreground/20 flex items-center justify-center"
                   >
                     <Settings className="h-5 w-5" />
                   </button>
@@ -245,37 +190,34 @@ export function Hero() {
               </div>
             </div>
 
-            {/* 오른쪽: 프로필 이미지 */}
-            <div className="order-1 md:order-2 flex justify-center">
-              <div className="relative">
-                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl">
+           {/* 오른쪽: 프로필 이미지 */}
+<div className="order-1 md:order-2 flex justify-center">
+  <div className="relative">
+    <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl">
   <EditableMedia
-    value={heroInfo.profileImage || "/uploads/profile.jpg"}
-    onChange={(url) => updateHeroInfo("profileImage", url)}
-    type="image"
-    storageKey="hero-profileImage"
-    className="w-full h-full object-cover"
-    alt="프로필"
-    purpose="hero-profile"
-  />
+  src={heroInfo.profileImage || "/uploads/profile.jpg"}
+  onChange={(url) => updateHeroInfo("profileImage", url)}
+  type="image"
+  storageKey="hero-profileImage"
+  className="w-full h-full object-cover"
+  alt="프로필"
+/>
+    </div>
+  </div>
 </div>
 
 
-                </div>
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-transparent pointer-events-none" />
-              </div>
-            </div>
           </div>
+        </div>
 
-        {/* 스크롤 인디케이터 */}
         <button
           onClick={scrollToAbout}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
         >
           <ArrowDown className="h-6 w-6 text-muted-foreground" />
         </button>
       </section>
-      
+
       {/* 소셜 링크 편집 모달 */}
       {showSocialEditor && isEditMode && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100]">
@@ -444,3 +386,4 @@ export function Hero() {
     </EditableBackground>
   )
 }
+
