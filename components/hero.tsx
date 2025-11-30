@@ -40,7 +40,7 @@ export function Hero() {
     name: "김민아",
     title: "MINAH KIM",
     description: "",
-    profileImage: "",
+    profileImage: "/uploads/general-1764513550489.jpg",
     backgroundImage: "",
     backgroundVideo: "",
     backgroundOpacity: 0.1,
