@@ -11,7 +11,7 @@ export function Footer() {
 
   // 헤더의 네비게이션 데이터 가져오기 - 기본값 설정
   const [navItems, setNavItems] = useState<Array<{ name: string, url: string }>>([
-    { name: "Home", url: "#home" },
+    { name: "Home", url: "#hero" },
     { name: "About", url: "#about" },
     { name: "Projects", url: "#projects" },
     { name: "Contact", url: "#contact" }
@@ -46,7 +46,7 @@ export function Footer() {
   // localStorage에서 데이터 로드
   useEffect(() => {
     // 푸터 정보 로드
-    const savedData = getData('footer-info-v2')
+    const savedData = getData('footer-info-v3')
     if (savedData) {
       // Made with와 템플릿 크레딧은 편집 불가이므로 기본값 유지
       setFooterInfo({
@@ -80,7 +80,7 @@ export function Footer() {
     }
     const newInfo = { ...footerInfo, [key]: value }
     setFooterInfo(newInfo)
-    saveData('footer-info-v2', newInfo)
+    saveData('footer-info-v3', newInfo)
     // 파일로도 저장
     await saveToFile('footer', 'Info', newInfo)
   }
