@@ -41,14 +41,14 @@ const ICON_MAP = {
 
 // 기본 데이터
 export const defaultConfig = {
-    logo: "Portfolio",
-    logoImage: "",
-    showNavBar: true,
-    showThemeToggle: true,
-    items: [{"name":"Home","url":"#hero","icon":"Home","show":true},{"name":"About","url":"#about","icon":"User","show":true},{"name":"Projects","url":"#projects","icon":"Briefcase","show":true},{"name":"Contact","url":"#contact","icon":"Mail","show":true},{"id":"guestbook","label":"Guestbook","icon":"Home"},{"name":"갤러리","url":"#gallery","icon":"Camera","show":false},{"name":"블로그","url":"#blog","icon":"Book","show":false}],
-    siteTitle: "My portfolio",
-    siteDescription: "김민아의 포트폴리오 사이트입니다"
-  }
+  logo: "Portfolio",
+  logoImage: "",
+  showNavBar: true,
+  showThemeToggle: true,
+  items: [{ "name": "Home", "url": "#hero", "icon": "Home", "show": true }, { "name": "About", "url": "#about", "icon": "User", "show": true }, { "name": "Projects", "url": "#projects", "icon": "Briefcase", "show": true }, { "name": "Contact", "url": "#contact", "icon": "Mail", "show": true }, { "id": "guestbook", "label": "Guestbook", "icon": "Home" }, { "name": "갤러리", "url": "#gallery", "icon": "Camera", "show": false }, { "name": "블로그", "url": "#blog", "icon": "Book", "show": false }],
+  siteTitle: "My portfolio",
+  siteDescription: "김민아의 포트폴리오 사이트입니다"
+}
 
 export function Header() {
   const { getData, saveData, isEditMode, saveToFile } = useInlineEditor()
@@ -84,17 +84,17 @@ export function Header() {
 
     const savedData = getData("nav-config") as
       | {
-          logo?: string
-          logoImage?: string
-          showNavBar?: boolean
-          showThemeToggle?: boolean
-          items?: Array<{
-            name: string
-            url: string
-            icon: string
-            show?: boolean
-          }>
-        }
+        logo?: string
+        logoImage?: string
+        showNavBar?: boolean
+        showThemeToggle?: boolean
+        items?: Array<{
+          name: string
+          url: string
+          icon: string
+          show?: boolean
+        }>
+      }
       | null
 
     if (savedData && savedData.items) {
@@ -310,10 +310,10 @@ export function Header() {
                       {index === 0
                         ? "홈"
                         : index === 1
-                        ? "소개"
-                        : index === 2
-                        ? "프로젝트"
-                        : "연락처"}
+                          ? "소개"
+                          : index === 2
+                            ? "프로젝트"
+                            : "연락처"}
                     </label>
                     <input
                       type="text"
@@ -348,10 +348,10 @@ export function Header() {
                         typeof item.icon === "string"
                           ? item.icon
                           : Object.keys(ICON_MAP).find(
-                              (key) =>
-                                ICON_MAP[key as keyof typeof ICON_MAP] ===
-                                item.icon,
-                            ) || "Home",
+                            (key) =>
+                              ICON_MAP[key as keyof typeof ICON_MAP] ===
+                              item.icon,
+                          ) || "Home",
                     })),
                   }
 
