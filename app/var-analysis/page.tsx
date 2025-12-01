@@ -54,14 +54,14 @@ export default function VarAnalysisPage() {
       {/* =============== 상단 제목 =============== */}
       <div className="max-w-4xl mx-auto px-4 py-20 text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-6">
-거시경제 변수가 주택시장에 미치는 시차적 영향 분석
+          거시경제 변수가 주택시장에 미치는 시차적 영향 분석
         </h1>
 
         <p className="text-muted-foreground mb-10 text-sm sm:text-base leading-relaxed">
           주택담보대출금리, 물가상승률, 코스피지수가 주택매매가격과 거래량에 미치는 영향을 VAR 모형으로 분석한 페이지입니다.
           <br />
-좌측 슬라이더를 통해 변수별 충격(Shock)을 조절하여 각 변수에 대한 주택시장의 반응(IRF)을 확인할 수 있습니다.        
-</p>
+          좌측 슬라이더를 통해 변수별 충격(Shock)을 조절하여 각 변수에 대한 주택시장의 반응(IRF)을 확인할 수 있습니다.
+        </p>
       </div>
 
       {/* ================== 본문 레이아웃 ================== */}
@@ -160,7 +160,7 @@ export default function VarAnalysisPage() {
       </div>
 
       {/* ======================= 분석 요약 ======================= */}
-<section className="mt-12 mb-12 bg-gray-50 p-8 rounded-xl shadow-sm leading-relaxed text-sm sm:text-base max-w-4xl mx-auto">        <h3 className="text-xl font-semibold mb-4">📌 분석 요약</h3>
+      <section className="mt-12 mb-12 bg-gray-50 p-8 rounded-xl shadow-sm leading-relaxed text-sm sm:text-base max-w-4xl mx-auto">        <h3 className="text-xl font-semibold mb-4">📌 분석 요약</h3>
 
         <p className="mb-4">
           본 연구는 벡터자기회귀(VAR) 모형을 활용하여 주담대금리, 물가상승률, 코스피지수가
@@ -178,38 +178,46 @@ export default function VarAnalysisPage() {
         <h3 className="text-lg font-semibold mb-4">📚 용어 정리</h3>
 
         <ul className="space-y-2">
-  <li className="flex gap-2">
-    <span className="font-semibold whitespace-nowrap">IRF(충격반응함수)</span>
-    <span className="text-muted-foreground">어떤 변수에 1단위 충격이 발생했을 때 다른 변수가 시차별로 어떻게 반응하는지를 나타내는 함수</span>
-  </li>
+          <li className="flex gap-2">
+            <span className="font-semibold whitespace-nowrap">IRF(충격반응함수)</span>
+            <span className="text-muted-foreground">어떤 변수에 1단위 충격이 발생했을 때 다른 변수가 시차별로 어떻게 반응하는지를 나타내는 함수</span>
+          </li>
 
-  <li className="flex gap-2">
-    <span className="font-semibold whitespace-nowrap">충격(Shock)</span>
-    <span className="text-muted-foreground">모형 내 특정 변수에 주어지는 외생적 변화</span>
-  </li>
+          <li className="flex gap-2">
+            <span className="font-semibold whitespace-nowrap">충격(Shock)</span>
+            <span className="text-muted-foreground">모형 내 특정 변수에 주어지는 외생적 변화</span>
+          </li>
 
-  <li className="flex gap-2">
-    <span className="font-semibold whitespace-nowrap">거시경제 변수</span>
-    <span className="text-muted-foreground">경제 전체의 흐름을 설명하는 광범위한 변수들</span>
-  </li>
+          <li className="flex gap-2">
+            <span className="font-semibold whitespace-nowrap">거시경제 변수</span>
+            <span className="text-muted-foreground">경제 전체의 흐름을 설명하는 광범위한 변수들</span>
+          </li>
 
-  <li className="flex gap-2">
-    <span className="font-semibold whitespace-nowrap">시차(Lag)</span>
-    <span className="text-muted-foreground">충격 이후 경과한 기간</span>
-  </li>
-</ul>
+          <li className="flex gap-2">
+            <span className="font-semibold whitespace-nowrap">시차(Lag)</span>
+            <span className="text-muted-foreground">충격 이후 경과한 기간</span>
+          </li>
+        </ul>
       </section>
 
-      {/* ================= 돌아가기 버튼 ================= */}
-      <div className="flex justify-center mt-10 mb-20">
+      <div className="flex flex-col items-center gap-3 mt-10 mb-20">
+        {/* PDF 다운로드 버튼 */}
+        <a
+          href="/pdf/var.pdf"
+          download="거시경제변수와 주택시장 간의 상관관계 분석.pdf"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-full transition-colors"
+        >
+          📄 PDF 다운로드
+        </a>
+
+        {/* 포트폴리오 돌아가기 버튼 */}
         <a
           href="/#projects"
-          className="px-5 py-2 bg-[#11126A] text-white rounded-full shadow-sm hover:bg-[#0d0f5a] transition-all"
+          className="px-5 py-2 bg-[#11126A] text-white rounded-full"
         >
           ← 포트폴리오로 돌아가기
         </a>
       </div>
-
     </main>
   )
 }

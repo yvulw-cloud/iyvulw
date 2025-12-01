@@ -26,7 +26,7 @@ ChartJS.register(
 export default function DsrChart() {
   // ✔ 이제 props 필요 없음
   const [isEditMode, setIsEditMode] = useState(true)
-    const [region, setRegion] = useState<"nation" | "seoul" | "metro6" | "others">("nation")
+  const [region, setRegion] = useState<"nation" | "seoul" | "metro6" | "others">("nation")
   const [tab, setTab] = useState<"household" | "bank">("household")
 
   /* ---------- PDF 업로드 상태 ---------- */
@@ -64,17 +64,17 @@ export default function DsrChart() {
 
   /* ------------------------- 라벨 ------------------------- */
   const labels = [
-    "2020-01","2020-07","2021-01","2021-07",
-    "2022-01","2022-07","2023-01","2023-07",
-    "2024-01","2024-07"
+    "2020-01", "2020-07", "2021-01", "2021-07",
+    "2022-01", "2022-07", "2023-01", "2023-07",
+    "2024-01", "2024-07"
   ]
 
   /* ------------------------- 가계대출 증가율 그래프 ------------------------- */
   const householdGrowth: Record<typeof region, number[]> = {
-    nation: [0.9,0.8,1.4,1.1,0.0,0.3,-0.4,0.7,1.4],
-    seoul:  [1.0,0.7,1.3,1.0,-0.1,0.2,-0.5,0.6,1.2],
-    metro6: [0.8,0.6,1.2,1.0,0.1,0.4,-0.3,0.5,1.0],
-    others: [0.7,0.5,1.0,0.8,0.1,0.5,-0.2,0.6,1.1],
+    nation: [0.9, 0.8, 1.4, 1.1, 0.0, 0.3, -0.4, 0.7, 1.4],
+    seoul: [1.0, 0.7, 1.3, 1.0, -0.1, 0.2, -0.5, 0.6, 1.2],
+    metro6: [0.8, 0.6, 1.2, 1.0, 0.1, 0.4, -0.3, 0.5, 1.0],
+    others: [0.7, 0.5, 1.0, 0.8, 0.1, 0.5, -0.2, 0.6, 1.1],
   }
 
   const data_household = {
@@ -101,7 +101,7 @@ export default function DsrChart() {
           dsr1: {
             type: "line",
             xMin: 3, xMax: 3,
-            borderColor: "#ef4444", borderWidth: 2, borderDash: [4,2],
+            borderColor: "#ef4444", borderWidth: 2, borderDash: [4, 2],
             label: {
               enabled: true,
               content: "DSR 1단계",
@@ -114,7 +114,7 @@ export default function DsrChart() {
           dsr2: {
             type: "line",
             xMin: 4, xMax: 4,
-            borderColor: "#3b82f6", borderWidth: 2, borderDash: [4,2],
+            borderColor: "#3b82f6", borderWidth: 2, borderDash: [4, 2],
             label: {
               enabled: true,
               content: "DSR 2단계",
@@ -127,7 +127,7 @@ export default function DsrChart() {
           dsr3: {
             type: "line",
             xMin: 5, xMax: 5,
-            borderColor: "#10b981", borderWidth: 2, borderDash: [4,2],
+            borderColor: "#10b981", borderWidth: 2, borderDash: [4, 2],
             label: {
               enabled: true,
               content: "DSR 3단계",
@@ -141,49 +141,49 @@ export default function DsrChart() {
       },
     },
     scales: {
-      y: { min: -1, max: 2, title:{display:true, text:"증가율(%)"} }
+      y: { min: -1, max: 2, title: { display: true, text: "증가율(%)" } }
     }
   }
 
   /* ------------------------- 비은행권 비중 7개 지역 ------------------------- */
 
   const cityData = {
-    seoul:  [0.080,0.075,0.073,0.070,0.069,0.070,0.071,0.065,0.060,0.058],
-    incheon:[0.115,0.110,0.108,0.112,0.116,0.118,0.110,0.103,0.098,0.110],
-    busan:  [0.125,0.118,0.115,0.112,0.115,0.118,0.120,0.117,0.102,0.108],
-    daegu:  [0.205,0.195,0.175,0.165,0.168,0.170,0.173,0.165,0.148,0.145],
-    gwangju:[0.270,0.255,0.245,0.240,0.243,0.258,0.268,0.260,0.230,0.225],
-    daejeon:[0.245,0.235,0.225,0.220,0.225,0.253,0.254,0.240,0.205,0.190],
-    ulsan:  [0.280,0.265,0.258,0.255,0.258,0.263,0.272,0.265,0.228,0.222],
+    seoul: [0.080, 0.075, 0.073, 0.070, 0.069, 0.070, 0.071, 0.065, 0.060, 0.058],
+    incheon: [0.115, 0.110, 0.108, 0.112, 0.116, 0.118, 0.110, 0.103, 0.098, 0.110],
+    busan: [0.125, 0.118, 0.115, 0.112, 0.115, 0.118, 0.120, 0.117, 0.102, 0.108],
+    daegu: [0.205, 0.195, 0.175, 0.165, 0.168, 0.170, 0.173, 0.165, 0.148, 0.145],
+    gwangju: [0.270, 0.255, 0.245, 0.240, 0.243, 0.258, 0.268, 0.260, 0.230, 0.225],
+    daejeon: [0.245, 0.235, 0.225, 0.220, 0.225, 0.253, 0.254, 0.240, 0.205, 0.190],
+    ulsan: [0.280, 0.265, 0.258, 0.255, 0.258, 0.263, 0.272, 0.265, 0.228, 0.222],
   }
 
   const data_bank = {
     labels,
     datasets: [
-      { label:"서울",   data:cityData.seoul,   borderColor:"#38bdf8", borderWidth:2, tension:0.2, pointRadius:0 },
-      { label:"인천",   data:cityData.incheon, borderColor:"#fb923c", borderWidth:2, tension:0.2, pointRadius:0 },
-      { label:"부산",   data:cityData.busan,   borderColor:"#4ade80", borderWidth:2, tension:0.2, pointRadius:0 },
-      { label:"대구",   data:cityData.daegu,   borderColor:"#f87171", borderWidth:2, tension:0.2, pointRadius:0 },
-      { label:"광주",   data:cityData.gwangju, borderColor:"#a855f7", borderWidth:2, tension:0.2, pointRadius:0 },
-      { label:"대전",   data:cityData.daejeon, borderColor:"#8b5cf6", borderWidth:2, tension:0.2, pointRadius:0 },
-      { label:"울산",   data:cityData.ulsan,   borderColor:"#ec4899", borderWidth:2, tension:0.2, pointRadius:0 },
+      { label: "서울", data: cityData.seoul, borderColor: "#38bdf8", borderWidth: 2, tension: 0.2, pointRadius: 0 },
+      { label: "인천", data: cityData.incheon, borderColor: "#fb923c", borderWidth: 2, tension: 0.2, pointRadius: 0 },
+      { label: "부산", data: cityData.busan, borderColor: "#4ade80", borderWidth: 2, tension: 0.2, pointRadius: 0 },
+      { label: "대구", data: cityData.daegu, borderColor: "#f87171", borderWidth: 2, tension: 0.2, pointRadius: 0 },
+      { label: "광주", data: cityData.gwangju, borderColor: "#a855f7", borderWidth: 2, tension: 0.2, pointRadius: 0 },
+      { label: "대전", data: cityData.daejeon, borderColor: "#8b5cf6", borderWidth: 2, tension: 0.2, pointRadius: 0 },
+      { label: "울산", data: cityData.ulsan, borderColor: "#ec4899", borderWidth: 2, tension: 0.2, pointRadius: 0 },
     ]
   }
 
   const options_bank = {
     responsive: true,
     plugins: {
-      legend: { labels:{ font:{ size:12 }}},
+      legend: { labels: { font: { size: 12 } } },
       annotation: {
         annotations: {
-          dsr1:{type:"line", xMin:3,xMax:3, borderColor:"#ef4444", borderWidth:2, borderDash:[4,4]},
-          dsr2:{type:"line", xMin:4,xMax:4, borderColor:"#3b82f6", borderWidth:2, borderDash:[4,4]},
-          dsr3:{type:"line", xMin:5,xMax:5, borderColor:"#10b981", borderWidth:2, borderDash:[4,4]},
+          dsr1: { type: "line", xMin: 3, xMax: 3, borderColor: "#ef4444", borderWidth: 2, borderDash: [4, 4] },
+          dsr2: { type: "line", xMin: 4, xMax: 4, borderColor: "#3b82f6", borderWidth: 2, borderDash: [4, 4] },
+          dsr3: { type: "line", xMin: 5, xMax: 5, borderColor: "#10b981", borderWidth: 2, borderDash: [4, 4] },
         }
       }
     },
     scales: {
-      y:{ min:0.05, max:0.30, title:{display:true, text:"비은행권 대출 비중(%)"} }
+      y: { min: 0.05, max: 0.30, title: { display: true, text: "비은행권 대출 비중(%)" } }
     }
   }
 
@@ -204,18 +204,16 @@ export default function DsrChart() {
       <div className="flex justify-center gap-4 mb-6">
         <button
           onClick={() => setTab("household")}
-          className={`px-5 py-2 rounded-full border ${
-            tab === "household" ? "bg-black text-white" : "bg-white"
-          }`}
+          className={`px-5 py-2 rounded-full border ${tab === "household" ? "bg-black text-white" : "bg-white"
+            }`}
         >
           가계대출 증가율
         </button>
 
         <button
           onClick={() => setTab("bank")}
-          className={`px-5 py-2 rounded-full border ${
-            tab === "bank" ? "bg-black text-white" : "bg-white"
-          }`}
+          className={`px-5 py-2 rounded-full border ${tab === "bank" ? "bg-black text-white" : "bg-white"
+            }`}
         >
           비은행권 대출 비중
         </button>
@@ -271,8 +269,17 @@ export default function DsrChart() {
         </ul>
       </section>
 
-      {/* 포트폴리오로 돌아가기 */}
-      <div className="flex justify-center mt-8">
+      <div className="flex flex-col items-center mt-10 space-y-3">
+        {/* PDF 다운로드 버튼 */}
+        <a
+          href="/pdf/dsr.pdf"
+          download="DSR 규제가 금융권과 주택 시장에 미치는 영향 분석.pdf"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-full transition-colors"
+        >
+          📄 PDF 다운로드
+        </a>
+
+        {/* 포트폴리오로 돌아가기 */}
         <a
           href="/#projects"
           className="px-5 py-2 bg-[#11126A] text-white rounded-full"
@@ -280,7 +287,6 @@ export default function DsrChart() {
           ← 포트폴리오로 돌아가기
         </a>
       </div>
-
     </div>
   )
 }

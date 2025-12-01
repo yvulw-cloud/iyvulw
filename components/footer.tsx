@@ -37,7 +37,7 @@ export function Footer() {
     showMadeWith: true,
     madeWithLocation: "Mrbaeksang",
     showTemplateCredit: true,
-    templateCreator: { "name": "백상", "youtube": "https://www.youtube.com/@Mrbaeksang95/videos", "website": "https://devcom.kr/", "email": "qortkdgus95@gmail.com" },
+    templateCreator: {"name":"백상","youtube":"https://www.youtube.com/@Mrbaeksang95/videos","website":"https://devcom.kr/","email":"qortkdgus95@gmail.com"},
     showScrollTop: true
   }
 
