@@ -177,34 +177,27 @@ export default function VarAnalysisPage() {
       <section className="mb-24 bg-gray-50 pt-6 pb-8 px-8 rounded-xl shadow-sm text-sm sm:text-base max-w-4xl mx-auto leading-relaxed">
         <h3 className="text-lg font-semibold mb-4">📚 용어 정리</h3>
 
-        <div className="space-y-4">
+        <ul className="space-y-2">
+  <li className="flex gap-2">
+    <span className="font-semibold whitespace-nowrap">IRF(충격반응함수)</span>
+    <span className="text-muted-foreground">어떤 변수에 1단위 충격이 발생했을 때 다른 변수가 시차별로 어떻게 반응하는지를 나타내는 함수</span>
+  </li>
 
-          <div>
-            <p className="font-semibold">VAR(Vector AutoRegression,벡터자기회귀)</p>
-            <p>서로 영향을 주고받는 시계열 변수들을 분석하는 대표적 모형</p>
-          </div>
+  <li className="flex gap-2">
+    <span className="font-semibold whitespace-nowrap">충격(Shock)</span>
+    <span className="text-muted-foreground">모형 내 특정 변수에 주어지는 외생적 변화</span>
+  </li>
 
-          <div>
-            <p className="font-semibold">IRF(충격반응함수)</p>
-            <p>어떤 변수에 1단위 충격이 발생했을 때 다른 변수가 시차별로 어떻게 반응하는지를 나타내는 함수</p>
-          </div>
+  <li className="flex gap-2">
+    <span className="font-semibold whitespace-nowrap">거시경제 변수</span>
+    <span className="text-muted-foreground">경제 전체의 흐름을 설명하는 광범위한 변수들</span>
+  </li>
 
-          <div>
-            <p className="font-semibold">충격(Shock)</p>
-            <p>모형 내 특정 변수에 주어지는 외생적 변화</p>
-          </div>
-
-          <div>
-            <p className="font-semibold">거시경제 변수</p>
-            <p>경제 전체의 흐름을 설명하는 광범위한 변수들</p>
-          </div>
-
-          <div>
-            <p className="font-semibold">시차(Lag)</p>
-            <p>충격 이후 경과한 기간</p>
-          </div>
-
-        </div>
+  <li className="flex gap-2">
+    <span className="font-semibold whitespace-nowrap">시차(Lag)</span>
+    <span className="text-muted-foreground">충격 이후 경과한 기간</span>
+  </li>
+</ul>
       </section>
 
       {/* ================= 돌아가기 버튼 ================= */}
