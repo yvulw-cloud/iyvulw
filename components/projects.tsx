@@ -33,11 +33,11 @@ export function Projects() {
             />
           </h2>
 
-{/* 안내 문구 */}
-<p className="text-sm text-gray-500 max-w-[600px] mx-auto text-center mb-10">
-  학부 과정에서 수행한 프로젝트들을 핵심 흐름이 잘 보이도록 재구성했습니다.
-  <br />각 카드를 통해 분석 과정과 내용을 쉽게 살펴볼 수 있습니다.
-</p>
+          {/* 안내 문구 */}
+          <p className="text-sm text-gray-500 max-w-[600px] mx-auto text-center mb-10">
+            학부 과정에서 수행한 프로젝트들을 핵심 흐름이 잘 보이도록 재구성했습니다.
+            <br />각 카드를 통해 분석 과정과 내용을 살펴볼 수 있습니다.
+          </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
 
@@ -53,8 +53,7 @@ export function Projects() {
 
               <p className="text-sm text-muted-foreground mb-6">
                 <EditableText
-                  value="DSR 규제 이후 주택금융시장의 변화를
-시계열적 추세 중심으로 분석·시각화한 프로젝트입니다."
+                  value="DSR규제가 주택금융시장에 미친 영향을 시계열 데이터로 분석·시각화한 프로젝트입니다."
                   storageKey="proj-dsr-desc"
                   multiline
                   onChange={(v) => handleChange("proj-dsr-desc", v)}
@@ -85,7 +84,7 @@ export function Projects() {
 
               <p className="text-sm text-muted-foreground mb-6">
                 <EditableText
-                  value="주택담보대출금리, 물가상승률, 코스피지수가 주택매매가격과 거래량에 미치는 영향을 VAR 모형으로 분석한 프로젝트입니다."
+                  value="거시경제변수가 주택시장에 미치는 영향을 VAR 모형으로 분석한 프로젝트입니다."
                   storageKey="proj-var-desc"
                   multiline
                   onChange={(v) => handleChange("proj-var-desc", v)}
@@ -116,8 +115,7 @@ export function Projects() {
 
               <p className="text-sm text-muted-foreground mb-6">
                 <EditableText
-                  value="성남시 제4테크노밸리 개발 방향을 토대로
-기능 재배치, 공간 구성, 주요 축을 직접 설계한 프로젝트입니다."
+                  value="오리역 역세권 제4테크노밸리의 개발 방향과 공간 조성 방안을 제안한 프로젝트입니다."
                   storageKey="proj-ori-desc"
                   multiline
                   onChange={(v) => handleChange("proj-ori-desc", v)}

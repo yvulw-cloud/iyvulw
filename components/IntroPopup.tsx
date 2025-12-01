@@ -10,25 +10,25 @@ const introLines: string[] = [
   "　활동 흐름을 한눈에 볼 수 있도록 타임라인 UI로 　재구성했습니다.",
 
   "✔️ Skills",
-  "　숙련도를 직관적으로 확인할 수 있는 알약 형태의 UI를 　구현했습니다.",
+  "　숙련도를 직관적으로 확인할 수 있는 알약 　형태의 UI를 구현했습니다.",
 
   "✔️ Interests",
-  "　관심사 버튼을 누르면 각 항목의 상세 설명이 펼쳐지도록 　제작했습니다.",
+  "　관심사 버튼을 누르면 각 항목의 상세 설명이 　펼쳐지도록 제작했습니다.",
 
   "✔️ Projects",
-  "　분석 과정과 결과를 이해하기 쉽도록 구성했으며, 일부는 　값을 조정해 변화를 확인할 수 있도록 구현했습니다.",
+  "　분석 과정과 결과를 시각화하고, 일부는 값을 　조정해 변화를 확인할 수 있도록 구현했습니다.",
 
   "✔️ Guestbook",
-  "　Supabase 기반으로 메시지가 실제 서버에 저장되는 　방명록 기능을 구축했습니다.",
+  "　Supabase 기반으로 메시지가 실제 서버에 　저장되는 방명록 기능을 구축했습니다.",
 
   "✔️ Visitor Guide",
-  "　처음 방문하는 분들이 사이트 구조를 빠르게 이해할 수 　있도록 안내 팝업을 추가했습니다.",
+  "　처음 방문하는 분들이 사이트 구조를 빠르게 　이해할 수 있도록 안내 팝업을 추가했습니다.",
 
-  "궁금한 점은 포트폴리오에 기재된 이메일로 편하게 연락 주세요.",
+  "궁금한 점은 포트폴리오에 기재된 연락처로 편하게 연락 주세요.",
 ]
-{/* test line */}
+{/* test line */ }
 export function IntroPopup() {
-  const [isOpen, setIsOpen] = useState(true) 
+  const [isOpen, setIsOpen] = useState(true)
 
   const handleClose = () => {
     setIsOpen(false)
@@ -40,9 +40,9 @@ export function IntroPopup() {
     <div
       className="
         fixed top-4 left-4 z-[99999]
-        w-full max-w-sm
-        px-4 py-4
-        bg-white/95 backdrop-blur
+        w-full max-w-xs
+        px-4 py-8
+bg-white/98 shadow-2xl
         border border-gray-200
         rounded-2xl shadow-xl
         text-sm

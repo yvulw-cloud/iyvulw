@@ -27,12 +27,12 @@ export default function TravelSection() {
       {/* 여행 이미지 박스 */}
       <div className="mt-10 mx-auto w-[500px] h-[500px] rounded-xl border border-gray-300 shadow-sm bg-gray-50 flex items-center justify-center overflow-hidden">
         <div className="relative w-full h-full">
-      <Image
-  src="/uploads/travel.JPG"
-  alt="travel"
-  fill
-  className="object-cover"
-/>
+          <Image
+            src="/uploads/travel.JPG"
+            alt="travel"
+            fill
+            className="object-cover object-center"
+          />
 
         </div>
       </div>

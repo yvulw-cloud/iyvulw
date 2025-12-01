@@ -11,7 +11,7 @@ export default function GuestbookSection() {
         </h2>
 
         <p className="text-sm sm:text-base text-muted-foreground mb-6">
-          아래 버튼을 누르면 좋을 일이 일어날거에요
+          아래 버튼을 누르면 좋을 일이 일어날 거에요
         </p>
 
         <Link
@@ -23,7 +23,7 @@ export default function GuestbookSection() {
                      hover:bg-[#0f105d]
                      active:scale-95"
         >
-          나를 눌러욤🎁
+          나를 눌러욤!🎁
         </Link>
       </div>
     </section>
