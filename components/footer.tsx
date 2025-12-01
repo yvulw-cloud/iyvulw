@@ -59,7 +59,7 @@ export function Footer() {
       })
     }
 
-    // 헤더 네비게이션 데이터도 함께 로드
+    // 헤더 네비게이션 데이터도 함께 로드//테스트
     const navConfig = getData('nav-config') as { items?: Array<{ name: string, url: string, icon: string, show: boolean }> } | null
     if (navConfig?.items) {
       // show가 true인 항목만 필터링하여 푸터에 표시
