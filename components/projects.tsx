@@ -39,7 +39,7 @@ export function Projects() {
             <div className="border border-black/10 rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all">
               <h3 className="text-lg font-bold mb-2">
                 <EditableText
-                  value="📈 DSR 정책 효과 분석"
+                  value="📈 DSR 정책이 주택금융시장에 미치는 영향 분석"
                   storageKey="proj-dsr-title"
                   onChange={(v) => handleChange("proj-dsr-title", v)}
                 />
@@ -47,7 +47,7 @@ export function Projects() {
 
               <p className="text-sm text-muted-foreground mb-6">
                 <EditableText
-                  value="가계대출 증가율 변화와 풍선효과를 시각적으로 확인할 수 있는 인터랙티브 그래프입니다."
+                  value="DSR 규제가 주택금융시장에 미친 변화를 시각적으로 정리한 페이지입니다."
                   storageKey="proj-dsr-desc"
                   multiline
                   onChange={(v) => handleChange("proj-dsr-desc", v)}
@@ -70,7 +70,7 @@ export function Projects() {
             <div className="border border-black/10 rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all">
               <h3 className="text-lg font-bold mb-2">
                 <EditableText
-                  value="📊 VAR 기반 주택시장 반응 분석"
+                  value="📊거시경제 변수가 주택시장에 미치는 시차적 영향 분석"
                   storageKey="proj-var-title"
                   onChange={(v) => handleChange("proj-var-title", v)}
                 />
@@ -78,7 +78,7 @@ export function Projects() {
 
               <p className="text-sm text-muted-foreground mb-6">
                 <EditableText
-                  value="금리·물가·주가 변화가 주택매매가격과 거래량에 미치는 영향을 VAR 모형으로 분석한 페이지입니다."
+                  value="주택담보대출금리, 물가상승률, 코스피지수가 주택매매가격과 거래량에 미치는 영향을 VAR 모형으로 분석한 페이지입니다."
                   storageKey="proj-var-desc"
                   multiline
                   onChange={(v) => handleChange("proj-var-desc", v)}

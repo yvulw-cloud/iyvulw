@@ -259,7 +259,7 @@ export default function DsrChart() {
         <h3 className="text-lg font-semibold mb-4">📚 용어 정리</h3>
         <ul className="space-y-3 text-sm sm:text-base">
           <li>
-            <b>DSR(Debt Service Ratio)</b> 연소득 대비 모든 대출의 연간 원리금 상환액이 차지하는 비율
+            <b>DSR(Debt Service Ratio,총부채원리금상환비율)</b> 연소득 대비 모든 대출의 연간 원리금 상환액이 차지하는 비율
           </li>
           <li>
             <b>비은행권</b> 일반 은행을 제외한 제2금융권(저축은행·보험·캐피탈·증권 등)을 통칭하는 금융업권
@@ -270,38 +270,6 @@ export default function DsrChart() {
           </li>
         </ul>
       </section>
-
-      {/* PDF 업로드 + 다운로드 (단일 버튼) */}
-      <div className="flex justify-center gap-4 mt-12 items-center">
-
-        {/* 숨겨진 파일 인풋 (에디터용) */}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="application/pdf"
-          className="hidden"
-          onChange={handlePdfUpload}
-        />
-
-       <a
-  href={pdfUrl ?? "#"}
-  onClick={handleReportButtonClick}
-  target="_blank"            // ← 새 탭 열기
-  rel="noopener noreferrer"  // ← 보안 옵션
-  className="px-5 py-2 bg-gray-700 text-white rounded-full"
->
-  📄 보고서 열기
-</a>
-
-
-
-        {/* 에디터 모드에서만 파일명 표시 */}
-        {isEditMode && pdfFile && (
-          <p className="text-xs text-gray-500">
-            업로드됨: {pdfFile.name}
-          </p>
-        )}
-      </div>
 
       {/* 포트폴리오로 돌아가기 */}
       <div className="flex justify-center mt-8">
