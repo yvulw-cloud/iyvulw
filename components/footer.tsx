@@ -46,7 +46,7 @@ export function Footer() {
   // localStorage에서 데이터 로드
   useEffect(() => {
     // 푸터 정보 로드
-    const savedData = getData('footer-info')
+    const savedData = getData('footer-info-v2')
     if (savedData) {
       // Made with와 템플릿 크레딧은 편집 불가이므로 기본값 유지
       setFooterInfo({
@@ -80,7 +80,7 @@ export function Footer() {
     }
     const newInfo = { ...footerInfo, [key]: value }
     setFooterInfo(newInfo)
-    saveData('footer-info', newInfo)
+    saveData('footer-info-v2', newInfo)
     // 파일로도 저장
     await saveToFile('footer', 'Info', newInfo)
   }
