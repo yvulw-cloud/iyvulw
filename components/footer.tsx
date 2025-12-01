@@ -8,12 +8,13 @@ import { useInlineEditor } from "@/contexts/inline-editor-context"
 export function Footer() {
   const { getData, saveData, isEditMode, saveToFile } = useInlineEditor()
   const currentYear = new Date().getFullYear()
-  
+
   // 헤더의 네비게이션 데이터 가져오기 - 기본값 설정
-  const [navItems, setNavItems] = useState<Array<{name: string, url: string}>>([
-    { name: "소개", url: "#about" },
-    { name: "프로젝트", url: "#projects" },
-    { name: "연락처", url: "#contact" }
+  const [navItems, setNavItems] = useState<Array<{ name: string, url: string }>>([
+    { name: "Home", url: "#home" },
+    { name: "About", url: "#about" },
+    { name: "Projects", url: "#projects" },
+    { name: "Contact", url: "#contact" }
   ])
 
   const scrollToTop = () => {
@@ -36,7 +37,7 @@ export function Footer() {
     showMadeWith: true,
     madeWithLocation: "Mrbaeksang",
     showTemplateCredit: true,
-    templateCreator: {"name":"백상","youtube":"https://www.youtube.com/@Mrbaeksang95/videos","website":"https://devcom.kr/","email":"qortkdgus95@gmail.com"},
+    templateCreator: { "name": "백상", "youtube": "https://www.youtube.com/@Mrbaeksang95/videos", "website": "https://devcom.kr/", "email": "qortkdgus95@gmail.com" },
     showScrollTop: true
   }
 
@@ -48,8 +49,8 @@ export function Footer() {
     const savedData = getData('footer-info')
     if (savedData) {
       // Made with와 템플릿 크레딧은 편집 불가이므로 기본값 유지
-      setFooterInfo({ 
-        ...defaultInfo, 
+      setFooterInfo({
+        ...defaultInfo,
         ...savedData,
         showMadeWith: defaultInfo.showMadeWith,
         madeWithLocation: defaultInfo.madeWithLocation,
@@ -57,9 +58,9 @@ export function Footer() {
         templateCreator: defaultInfo.templateCreator
       })
     }
-    
+
     // 헤더 네비게이션 데이터도 함께 로드
-    const navConfig = getData('nav-config') as { items?: Array<{name: string, url: string, icon: string, show: boolean}> } | null
+    const navConfig = getData('nav-config') as { items?: Array<{ name: string, url: string, icon: string, show: boolean }> } | null
     if (navConfig?.items) {
       // show가 true인 항목만 필터링하여 푸터에 표시
       const visibleItems = navConfig.items
@@ -73,8 +74,8 @@ export function Footer() {
 
   const updateFooterInfo = async (key: string, value: string | boolean) => {
     // Made with와 템플릿 크레딧 관련 필드는 수정 불가
-    if (key === 'showMadeWith' || key === 'madeWithLocation' || 
-        key === 'showTemplateCredit' || key === 'templateCreator') {
+    if (key === 'showMadeWith' || key === 'madeWithLocation' ||
+      key === 'showTemplateCredit' || key === 'templateCreator') {
       return
     }
     const newInfo = { ...footerInfo, [key]: value }
@@ -83,7 +84,7 @@ export function Footer() {
     // 파일로도 저장
     await saveToFile('footer', 'Info', newInfo)
   }
-  
+
   // 푸터 전체를 표시하지 않음
   if (!footerInfo.showFooter && !isEditMode) {
     return null
@@ -204,7 +205,7 @@ export function Footer() {
               <p>{footerInfo.copyright || `© ${currentYear} ${footerInfo.name || 'Portfolio'}. All rights reserved.`}</p>
             )}
           </div>
-          
+
           {/* Made with 메시지 & 템플릿 크레딧 */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             {footerInfo.showMadeWith && (
@@ -213,21 +214,21 @@ export function Footer() {
                 {footerInfo.madeWithLocation && `in ${footerInfo.madeWithLocation}`}
               </span>
             )}
-            
+
             {/* 템플릿 제작자 크레딧 (편집 불가) */}
             {footerInfo.showTemplateCredit && footerInfo.templateCreator && (
               <>
                 {footerInfo.showMadeWith && <span className="text-muted-foreground/50">•</span>}
                 <span className="text-xs text-muted-foreground/70">Template by Mrbaeksang</span>
                 <div className="flex items-center gap-1">
-                  <a 
+                  <a
                     href={`mailto:${footerInfo.templateCreator.email}`}
                     className="inline-flex items-center justify-center w-6 h-6 rounded-full hover:bg-muted transition-colors"
                     aria-label="Email"
                   >
                     <Mail className="h-3 w-3 text-muted-foreground/70 hover:text-muted-foreground" />
                   </a>
-                  <a 
+                  <a
                     href={footerInfo.templateCreator.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -236,7 +237,7 @@ export function Footer() {
                   >
                     <Youtube className="h-3 w-3 text-muted-foreground/70 hover:text-muted-foreground" />
                   </a>
-                  <a 
+                  <a
                     href={footerInfo.templateCreator.website}
                     target="_blank"
                     rel="noopener noreferrer"

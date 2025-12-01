@@ -38,7 +38,7 @@ export function Hero() {
     useInlineEditor()
 
   const defaultSocialLinks = [
-    { name: "Mail", icon: "mail", url: "yvulw@naver.com" },
+    { name: "Mail", icon: "mail", url: "yvulw@dankook.ac.kr" },
     { name: "Instagram", icon: "instagram", url: "https://instagram.com/iyvulw" },
     { name: "YouTube", icon: "youtube", url: "https://youtube.com/@yvulw" },
     { name: "Blog", icon: "discord", url: "https://blog.naver.com/yvulw" },
@@ -190,23 +190,23 @@ export function Hero() {
               </div>
             </div>
 
-           {/* 오른쪽: 프로필 이미지 */}
-<div className="order-1 md:order-2 flex justify-center">
-  <div className="relative">
-    <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl">
- <EditableMedia
-  src={heroInfo.profileImage || "/uploads/profile.jpg"}
-  onChange={(url) => updateHeroInfo("profileImage", url)}
-  type="image"
-  storageKey="hero-profileImage"
-  className="w-full h-full object-cover"
-  alt="프로필"
-/>
+            {/* 오른쪽: 프로필 이미지 */}
+            <div className="order-1 md:order-2 flex justify-center">
+              <div className="relative">
+                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl">
+                  <EditableMedia
+                    src={heroInfo.profileImage || "/uploads/profile.jpg"}
+                    onChange={(url) => updateHeroInfo("profileImage", url)}
+                    type="image"
+                    storageKey="hero-profileImage"
+                    className="w-full h-full object-cover"
+                    alt="프로필"
+                  />
 
 
-    </div>
-  </div>
-</div>
+                </div>
+              </div>
+            </div>
 
 
           </div>
@@ -233,18 +233,18 @@ export function Hero() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            
+
             <div className="space-y-3">
               {socialLinks.map((link, index) => {
                 const Icon = AVAILABLE_ICONS[link.icon as keyof typeof AVAILABLE_ICONS] || Globe
-                
+
                 return (
                   <div key={index} className="flex items-center gap-3 p-3 border rounded-lg">
                     {/* 아이콘 미리보기 */}
                     <div className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center">
                       <Icon className="h-5 w-5" />
                     </div>
-                    
+
                     {/* 플랫폼 이름 입력 */}
                     <input
                       type="text"
@@ -253,7 +253,7 @@ export function Hero() {
                       placeholder="플랫폼 이름"
                       className="w-32 px-3 py-2 border rounded-lg bg-background"
                     />
-                    
+
                     {/* 아이콘 선택 버튼 */}
                     <div className="relative">
                       <button
@@ -263,7 +263,7 @@ export function Hero() {
                         <Icon className="h-4 w-4" />
                         <span className="text-sm">아이콘 변경</span>
                       </button>
-                      
+
                       {/* 아이콘 선택 드롭다운 */}
                       {showIconPicker === index && (
                         <div className="absolute top-full mt-2 left-0 bg-background border rounded-lg shadow-lg p-2 z-50 w-64 max-h-64 overflow-y-auto">
@@ -303,7 +303,7 @@ export function Hero() {
                         </div>
                       )}
                     </div>
-                    
+
                     {/* URL 입력 */}
                     <input
                       type="text"
@@ -312,7 +312,7 @@ export function Hero() {
                       placeholder="URL 또는 이메일"
                       className="flex-1 px-3 py-2 border rounded-lg bg-background"
                     />
-                    
+
                     {/* 삭제 버튼 */}
                     <button
                       onClick={() => removeSocialLink(index)}
@@ -323,7 +323,7 @@ export function Hero() {
                   </div>
                 )
               })}
-              
+
               <button
                 onClick={addSocialLink}
                 className="w-full py-3 border-2 border-dashed rounded-lg hover:border-primary hover:bg-primary/5 transition-all"
@@ -332,7 +332,7 @@ export function Hero() {
                 소셜 링크 추가
               </button>
             </div>
-            
+
             <div className="mt-6 pt-4 border-t">
               <p className="text-sm text-muted-foreground mb-4">
                 💡 팁: 플랫폼 이름을 입력하고, 아이콘을 선택한 후 URL을 입력하세요. 빈 URL은 표시되지 않습니다.
@@ -358,13 +358,13 @@ export function Hero() {
                       backgroundOpacity: backgroundData?.opacity || 0.1,
                       projectButton: heroInfo.projectButton,
                     }
-                    
+
                     // heroInfo 파일에 저장
                     const success1 = await saveToFile('hero', 'Info', allData)
-                    
+
                     // 소셜 링크도 파일에 저장 (defaultSocialLinks 필드 업데이트)
                     const success2 = await saveFieldToFile('hero', 'defaultSocialLinks', socialLinks)
-                    
+
                     if (success1 && success2) {
                       // localStorage도 업데이트
                       saveData('hero-info', heroInfo)
