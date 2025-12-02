@@ -30,7 +30,7 @@ export function Footer() {
     quickLinksTitle: "빠른 링크",
     showContactInfo: true,
     contactTitle: "연락처",
-    phone: "010-0000-0000",
+    phone: "010-8259-5919",
     email: "yvulw@dankook.ac.kr",
     location: "경기도 용인시",
     copyright: "",
