@@ -137,7 +137,7 @@ export function About() {
     educationCards: [{ "school": "용인 서원고등학교", "period": "2020 졸업", "description": " " }, { "school": "제주대학교 관광개발학과", "period": "2020 - 2023", "description": "GPA: 4.23/4.3" }, { "school": "단국대학교 도시계획부동산학부", "period": "2024 - 2026(졸업예정)", "description": "GPA: /4.5" }],
     hobbyTitle: "Interests",
     languageTitle: "Languages",
-    languages: [{ "icon": "globe", "title": "TOEIC", "description": "830점" }, { "icon": "globe", "title": "IELTS", "description": "Overall 7.5" }, { "icon": "globe", "title": "HSK", "description": "5급" }],
+    languages: [{ "icon": "globe", "title": "TOEIC", "description": "830점" }, { "icon": "globe", "title": "IELTS", "description": "Overall 7.5" }, { "icon": "globe", "title": "HSK", "description": "5급(253/300)" }],
     aboutIntroFirst: "시행착오가 많은 사람입니다.",
     aboutIntroBody: "16살 겨울, 미용실 인턴으로 일을 시작해 약 3년간 현장을 경험하고 인턴 과정을 수료했습니다. \n이후 디자이너 승급을 준비하는 과정에서, ‘잘하는 일’과 ‘평생 이어갈 일’은 다를 수 있다는 사실을 깨달았습니다.\n\n일을 하면서도 학업을 꾸준히 이어왔고, 좋아하던 여행을 계기로 관광학을 선택해 대학교에 진학했습니다. \n매 학기를 스스로 증명하는 시간이라 생각하며 성실히 공부했습니다. 그 태도는 전 학기 성적우수 장학금으로 이어졌습니다.\n\n전공을 공부하며 사람과 공간이 어떻게 연결되고 변화하는지에 대한 관심이 점점 깊어졌습니다. 이러한 관심은 자연스럽게 부동산 분야로 확장되었고, 단순히 공간을 향유하는 것이 아니라 도시 구조와 변화의 원리를 읽어내는 일에 더 큰 몰입을 느꼈습니다.\n\n여러 시행착오 끝에 알게 된 것은, 하고 있는 일에서 의미와 배움을 찾아가려는 태도가 제가 가진 가장 큰 힘이라는 것입니다. \n이 태도를 오래 잊지 않고 꾸준히 성장해 나가겠습니다."
   }
