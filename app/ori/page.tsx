@@ -139,8 +139,8 @@ export default function OriPage() {
 
         {/* PDF 다운로드 버튼 */}
         <a
-          href="/pdf/ori.pdf"
-          download="오리역 역세권 제4테크노밸리 개발 방향 제안.pdf"
+          href="/pdf/oridev.pdf"
+          download="oridev.pdf"
           className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-full transition-colors"
         >
           📄 PDF 다운로드
