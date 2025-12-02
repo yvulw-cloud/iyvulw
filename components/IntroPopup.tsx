@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-// 🔹 시안 2 버전: 스캔하기 좋은 구조로 정리됨!
+// 🔹 안내 문구 리스트
 const introLines: string[] = [
   "이 포트폴리오는 GitHub 템플릿을 기반으로, 필요한 기능과 UI를 직접 수정·구현하여 완성한 프로젝트입니다.",
 
@@ -26,13 +26,14 @@ const introLines: string[] = [
 
   "궁금한 점은 포트폴리오에 기재된 연락처로 편하게 연락 주세요.",
 ]
-{/* test line */ }
-export function IntroPopup() {
+
+// ----------------------------------------------------
+// ✅ 팝업 컴포넌트 (default export)
+// ----------------------------------------------------
+export default function IntroPopup() {
   const [isOpen, setIsOpen] = useState(true)
 
-  const handleClose = () => {
-    setIsOpen(false)
-  }
+  const handleClose = () => setIsOpen(false)
 
   if (!isOpen) return null
 
@@ -40,11 +41,9 @@ export function IntroPopup() {
     <div
       className="
         fixed top-4 left-4 z-[99999]
-        w-full max-w-xs
-        px-4 py-8
-bg-white/98 shadow-2xl
-        border border-gray-200
-        rounded-2xl shadow-xl
+        w-full max-w-xs px-4 py-8
+        bg-white/98 border border-gray-200
+        rounded-2xl shadow-2xl
         text-sm
       "
     >
@@ -56,7 +55,9 @@ bg-white/98 shadow-2xl
         닫기 ✕
       </button>
 
-      <h3 className="font-semibold mb-2 text-gray-900">방문해 주셔서 감사합니다👋🏻</h3>
+      <h3 className="font-semibold mb-2 text-gray-900">
+        방문해 주셔서 감사합니다👋🏻
+      </h3>
 
       <div className="max-h-64 overflow-y-auto pr-1 text-gray-700 leading-relaxed">
         <ul className="space-y-1.5">
@@ -71,5 +72,3 @@ bg-white/98 shadow-2xl
     </div>
   )
 }
-
-export default IntroPopup
