@@ -38,7 +38,7 @@ export function Contact() {
     title: "단국대학교 도시계획부동산학부",
     company: "",
     experience: "부동산학전공",
-    phone: "010-8259-5919",
+    phone: "010-0000-0000",
     email: "yvulw@dankook.ac.kr",
     website: "",
     location: "경기도 용인시",
