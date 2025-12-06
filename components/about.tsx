@@ -116,6 +116,57 @@ export function About() {
 
 
   // 기본 데이터
+  const defaultExperienceCards = [
+    {
+      period: "2025.03. - 2025.12.",
+      title: "단국대학교 도시계획부동산학부 답사동아리 시공인",
+      description:
+        "용산(국제업무지구 개발), 화성행궁(도시재생 성공 사례) 등 도시 내 다양한 공간을 정기적으로 답사하며 도시공간의 구조, 이용 패턴, 전략 등을 분석·토론하고, 그 결과를 공식 블로그에 게시함.",
+    },
+    {
+      period: "2025.01. - 2025.12.",
+      title: "단국대학교 사진동아리 DANSA 홍보부장",
+      description:
+        "단국대학교 사진동아리 DANSA 홍보부장으로 활동하며 공식 로고 제작 등 동아리 운영을 지원하고, 정기사진전 기획에 참여함. 사진전 홍보물 제작 과정에서 포토샵·일러스트·인디자인을 활용하여 포스터, 토록 등의 굿즈를 제작함.",
+    },
+    {
+      period: "2024.09. - 2024.12.",
+      title: "단국대학교 사진동아리 DANSA 홍보부원",
+      description:
+        "단국대학교 사진동아리 DANSA 홍보부원으로 활동하며 출사지 선정 및 동아리 행사 운영을 지원하고, 정기사진전 기획에 참여함. 사진전 홍보물 제작 과정에서 포토샵·일러스트·인디자인을 활용하여 포스터, 토록 등의 굿즈를 제작함.",
+    },
+    {
+      period: "2022.03. - 2022.06.",
+      title: "KT&G 상상프렌즈 14기",
+      description:
+        "상상프렌즈 행사 영상 제작을 비롯하여, 두 개의 메인 프로그램(‘청춘바다바다’, ‘제로웨이스트 Zero정했다!’)의 기획·무대 진행 등의 활동에 적극적으로 참여함.",
+    },
+    {
+      period: "2022.01. - 2022.12.",
+      title: "제주대학교 관광개발학과 기획부장",
+      description:
+        "2022학년도 관광개발학과 기획부장으로서 신입생 오리엔테이션, 학과 MT 등 다양한 행사를 주도적으로 기획·진행함. 특히, 학과 구성원의 개별적 특성을 파악하고 존중하는 리더십을 발휘하여 모든 학생이 대학 생활에 원활히 적응하도록 지원함.",
+    },
+    {
+      period: "2021.03. - 2021.11.",
+      title: "제5회 대한민국 청년의 날 기획홍보단 이벤트기획팀장",
+      description:
+        "제5회 대한민국 청년의 날 기획홍보단 이벤트 기획팀장으로 활동하며 전반적인 이벤트 기획 및 운영을 주도적으로 총괄함. 우수활동자로 선정되어 문화체육관광부 원장상을 수상함.",
+    },
+    {
+      period: "2021.11. - 2022.02.",
+      title: "제주대학교 35대 경상대학 학생회 ‘시작’ 선거운동본부 홍보국장",
+      description:
+        "제주대학교 35대 경상대학 학생회 ‘시작’ 선거운동본부 홍보국장으로서 공약 사업 정리, 홍보물 디자인, 콘텐츠 제작, 사진·영상 촬영, SNS 홍보 관리 등 선거본부의 실무 전반에 참여함. (당선)",
+    },
+    {
+      period: "2021.03. - 2021.12.",
+      title: "제주대학교 관광개발학과 2학년 부과대표",
+      description:
+        "2021학년도 관광개발학과 2학년 부과대표로서 다양한 학과 프로그램과 행사를 기획·진행하여 학과 운영에 적극적으로 참여함.",
+    },
+  ];
+
   const defaultInfo = {
     title: "Education",
     subtitle: "",
@@ -419,154 +470,69 @@ export function About() {
             )}
           </div>
 
-          {/* ✅ Experience 섹션 (타임라인 + 예쁘게 박스 디자인) */}
-          {(aboutInfo.experienceCards?.length > 0 || isEditMode) && (
-            <section className="mt-24 mb-24">
-              <div className="max-w-4xl mx-auto px-4">
-                {/* 제목 */}
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                    <EditableText
-                      value={aboutInfo.experienceTitle || "Experience"}
-                      onChange={(value) =>
-                        setAboutInfo((prev) => ({ ...prev, experienceTitle: value }))
-                      }
-                      storageKey="about-experience-title"
-                    />
-                  </h2>
-                </div>
+          {/* ===== Experience ===== */}
+          <section className="mt-24 mb-24">
+            <div className="max-w-4xl mx-auto px-4">
 
-                <div className="relative">
-                  {/* 세로 라인 */}
-                  <div className="absolute left-4 sm:left-6 top-0 bottom-0 border-l border-muted-foreground/20" />
+              {/* 제목 */}
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Experience</h2>
+              </div>
 
-                  <div className="space-y-8">
-                    {aboutInfo.experienceCards?.map((card, index) => (
-                      <div key={index} className="relative flex gap-4 sm:gap-6">
-                        {/* 타임라인 점 */}
-                        <div className="flex flex-col items-center pt-2">
-                          <div className="w-3 h-3 rounded-full bg-foreground z-10" />
-                        </div>
+              <div className="relative">
+                {/* 세로 라인 */}
+                <div className="absolute left-4 sm:left-6 top-0 bottom-0 border-l border-muted-foreground/20" />
 
-                        {/* 카드 */}
-                        <div className="flex-1 max-w-3xl group">
-                          <div
-                            className="
-                    relative overflow-hidden
-                    rounded-2xl
-                    border border-muted-foreground/10
-                    bg-gradient-to-br from-white to-muted/40
-                    shadow-sm
-                    group-hover:shadow-md group-hover:-translate-y-[2px]
-                    transition-all duration-200
-                  "
-                          >
-                            {/* 카드 상단 헤더바 */}
-                            <div className="flex items-center justify-between px-5 py-2.5 border-b border-muted-foreground/10 bg-white/70 backdrop-blur-sm">
-                              <span className="inline-flex items-center text-[11px] sm:text-xs text-muted-foreground">
-                                <EditableText
-                                  value={card.period || "기간을 입력하세요"}
-                                  onChange={(value) => {
-                                    const next = [...(aboutInfo.experienceCards || [])]
-                                    next[index] = { ...next[index], period: value }
-                                    updateAboutInfo("experienceCards", next)
-                                  }}
-                                  storageKey={null}
-                                />
-                              </span>
+                <div className="space-y-8">
+                  {defaultExperienceCards.map((card, index) => (
+                    <div key={index} className="relative flex gap-4 sm:gap-6">
 
-                              {isEditMode && (
-                                <button
-                                  onClick={() => {
-                                    const next = (aboutInfo.experienceCards || []).filter(
-                                      (_: any, i: number) => i !== index,
-                                    )
-                                    updateAboutInfo("experienceCards", next)
-                                  }}
-                                  className="text-[11px] text-red-400 hover:text-red-500"
-                                >
-                                  삭제
-                                </button>
-                              )}
-                            </div>
-
-                            {/* 카드 본문 */}
-                            <div className="px-5 py-4 sm:px-6 sm:py-5">
-                              {/* 활동 제목 */}
-                              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-1">
-                                <EditableText
-                                  value={card.title || "활동 제목을 입력하세요"}
-                                  onChange={(value) => {
-                                    const next = [...(aboutInfo.experienceCards || [])]
-                                    next[index] = { ...next[index], title: value }
-                                    updateAboutInfo("experienceCards", next)
-                                  }}
-                                  storageKey={null}
-                                />
-                              </h3>
-
-                              {/* 설명 */}
-                              <p className="mt-2 text-sm text-muted-foreground leading-relaxed max-w-2xl">
-                                <EditableText
-                                  value={
-                                    card.description ||
-                                    "활동 내용을 간단히 입력하세요."
-                                  }
-                                  onChange={(value) => {
-                                    const next = [...(aboutInfo.experienceCards || [])]
-                                    next[index] = { ...next[index], description: value }
-                                    updateAboutInfo("experienceCards", next)
-                                  }}
-                                  storageKey={null}
-                                />
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                      {/* 타임라인 점 */}
+                      <div className="flex flex-col items-center pt-2">
+                        <div className="w-3 h-3 rounded-full bg-foreground z-10" />
                       </div>
-                    ))}
 
-                    {/* ➕ Experience 카드 추가 */}
-                    {isEditMode && (
-                      <div className="relative flex gap-4 sm:gap-6">
-                        <div className="w-3" />
+                      {/* 카드 */}
+                      <div className="flex-1 max-w-3xl group">
                         <div
                           className="
-                  flex-1 max-w-3xl
-                  border-2 border-dashed border-muted-foreground/30
+                  relative overflow-hidden
                   rounded-2xl
-                  py-4 px-4
-                  cursor-pointer
-                  hover:border-primary/70 hover:bg-muted/30
-                  transition-all
+                  border border-muted-foreground/10
+                  bg-gradient-to-br from-white to-muted/40
+                  shadow-sm
+                  group-hover:shadow-md group-hover:-translate-y-[2px]
+                  transition-all duration-200
                 "
-                          onClick={() => {
-                            const next = [
-                              ...(aboutInfo.experienceCards || []),
-                              {
-                                period: "연도 / 기간",
-                                title: "활동 제목",
-                                role: "",
-                                description: "활동 내용을 간단히 적어주세요.",
-                              },
-                            ]
-                            updateAboutInfo("experienceCards", next)
-                          }}
                         >
-                          <p className="text-sm text-muted-foreground text-center">
-                            + Experience 추가
-                          </p>
+                          {/* 카드 헤더: 기간 */}
+                          <div className="flex items-center justify-between px-5 py-2.5 border-b border-muted-foreground/10 bg-white/70 backdrop-blur-sm">
+                            <span className="inline-flex items-center text-[11px] sm:text-xs text-muted-foreground">
+                              {card.period}
+                            </span>
+                          </div>
+
+                          {/* 카드 본문 */}
+                          <div className="px-5 py-4 sm:px-6 sm:py-5">
+                            <h3 className="text-base sm:text-lg font-semibold text-foreground mb-1">
+                              {card.title}
+                            </h3>
+
+                            <p className="mt-2 text-sm text-muted-foreground leading-relaxed max-w-2xl">
+                              {card.description}
+                            </p>
+                          </div>
+
                         </div>
                       </div>
-                    )}
-                  </div>
+
+                    </div>
+                  ))}
                 </div>
               </div>
-            </section>
-          )}
 
-          <section className="mt-32 mb-24"></section>
-
+            </div>
+          </section>
 
           {/* ===== Awards ===== */}
           <div className="text-center mb-12">
